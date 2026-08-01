@@ -54,11 +54,12 @@ const FontImport = () => (
 
 const navLinks = [
   { name: "Home", href: "#top" },
-  { name: "Why Us", href: "#why-us" },
-  { name: "Products", href: "#catalog" },
+  { name: "About Us", href: "#why-us" },
+  { name: "Our Products", href: "#catalog" },
+  { name: "Catalog", href: "#catalog" },
   { name: "Certificates", href: "#certificates" },
-  { name: "Testimonials", href: "#testimonials" },
-  { name: "Contact", href: "#contact" },
+  { name: "Payment Terms", href: "#payment-terms" },
+  { name: "Contact Us", href: "#contact" },
 ];
 
 const Navbar = () => {
