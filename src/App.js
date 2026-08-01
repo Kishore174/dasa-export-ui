@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import './index.css';
+import Navbar         from './components/ui/Navbar';
+import Hero           from './components/ui/Hero';
+import WhyChoose      from './components/ui/WhyChoose';
+import Products       from './components/ui/Products';
+import ExportProcess  from './components/ui/ExportProcess';
+import Certificates   from './components/ui/Certificates';
+import Testimonials   from './components/ui/Testimonials';
+import ContactSection from './components/ui/ContactSection';
+import Footer         from './components/ui/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* Fixed navigation */}
+      <Navbar />
+
+      {/* 1 · Hero — above the fold, dark bg */}
+      <main>
+        <Hero />
+
+        {/* 2 · Why Choose Us — cream bg */}
+        <WhyChoose />
+
+        {/* 3 · Products catalog — cream bg with dot grid */}
+        <Products />
+
+        {/* 4 · Export Process — cream → white gradient */}
+        <ExportProcess />
+
+        {/* 5 · Certificates — white bg with light glow */}
+        <Certificates />
+
+        {/* 6 · Testimonials — dark bg, global buyer reviews */}
+        <Testimonials />
+
+        {/* 7 · Contact & Inquiries — cream bg, form & offices */}
+        <ContactSection />
+      </main>
+
+      {/* 8 · Footer — dark bg, closes the page */}
+      <Footer />
     </div>
   );
 }
