@@ -12,24 +12,66 @@ const ContactSection = () => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+{errorMsg && (
+  <div className="p-4 rounded-xl border border-red-200 bg-red-50 text-red-700 text-sm">
+    {errorMsg}
+  </div>
+)}
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        country: "",
-        product: "Tomato Powder",
-        volume: "1 - 5 Metric Tons",
-        message: "",
-      });
-    }, 5000);
-  };
+  setLoading(true);
+  setErrorMsg("");
+
+  try {
+    const response = await fetch(
+      "https://formsubmit.co/ajax/contact@dasaexports.com",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `New Export Inquiry from ${formData.name} (${formData.country})`,
+          _replyto: formData.email,
+          _captcha: "false",
+
+          "Buyer Name": formData.name,
+          "Business Email": formData.email,
+          "Phone / WhatsApp": formData.phone,
+          "Destination Country": formData.country,
+          "Product Interest": formData.product,
+          "Order Quantity": formData.volume,
+          "Buyer Message": formData.message,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    console.log("FormSubmit response:", data);
+
+    if (response.ok && data.success) {
+      setSubmitted(true);
+    } else {
+      setErrorMsg(
+        data.message || "Unable to submit the inquiry. Please try again."
+      );
+    }
+  } catch (error) {
+    console.error("FormSubmit error:", error);
+
+    setErrorMsg(
+      "Unable to connect to the inquiry service. Please try again."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,7 +81,7 @@ const ContactSection = () => {
     <section
       id="contact"
       className="relative py-28 font-body overflow-hidden"
-      style={{ background: "var(--cream, #F6EFDE)" }}
+      style={{ background: "#FFFFFF" }}
     >
       {/* Subtle background grid pattern */}
       <div
@@ -132,7 +174,7 @@ const ContactSection = () => {
                       className="w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 text-sm text-gray-800 transition"
                       style={{
                         borderColor: "rgba(13,24,16,0.15)",
-                        background: "rgba(246,239,222,0.2)",
+                        background: "#F9FAFB",
                       }}
                     />
                   </div>
@@ -151,7 +193,7 @@ const ContactSection = () => {
                       className="w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 text-sm text-gray-800 transition"
                       style={{
                         borderColor: "rgba(13,24,16,0.15)",
-                        background: "rgba(246,239,222,0.2)",
+                        background: "#F9FAFB",
                       }}
                     />
                   </div>
@@ -172,7 +214,7 @@ const ContactSection = () => {
                       className="w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 text-sm text-gray-800 transition"
                       style={{
                         borderColor: "rgba(13,24,16,0.15)",
-                        background: "rgba(246,239,222,0.2)",
+                        background: "#F9FAFB",
                       }}
                     />
                   </div>
@@ -191,7 +233,7 @@ const ContactSection = () => {
                       className="w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 text-sm text-gray-800 transition"
                       style={{
                         borderColor: "rgba(13,24,16,0.15)",
-                        background: "rgba(246,239,222,0.2)",
+                        background: "#F9FAFB",
                       }}
                     />
                   </div>
@@ -256,21 +298,22 @@ const ContactSection = () => {
                     className="w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 text-sm text-gray-800 transition"
                     style={{
                       borderColor: "rgba(13,24,16,0.15)",
-                      background: "rgba(246,239,222,0.2)",
+                      background: "#F9FAFB",
                     }}
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-full font-medium text-base flex items-center justify-center gap-3 transition-transform hover:-translate-y-0.5 shadow-lg"
+                  disabled={loading}
+                  className="w-full py-4 rounded-full font-medium text-base flex items-center justify-center gap-3 transition-transform hover:-translate-y-0.5 shadow-lg disabled:opacity-70"
                   style={{
                     background: "var(--tomato, #C43E2A)",
                     color: "var(--cream, #F6EFDE)",
                   }}
                 >
                   <Send size={18} />
-                  Submit Export Inquiry
+                  {loading ? "Sending Inquiry to Desk..." : "Submit Export Inquiry"}
                 </button>
               </form>
             )}
@@ -341,9 +384,13 @@ const ContactSection = () => {
                     <Mail size={18} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-sm text-gray-900">Official Email</h4>
-                    <p className="text-xs text-gray-600 mt-0.5">info@dasaexports.com</p>
-                    <p className="text-xs text-gray-600">sales@dasaexports.com</p>
+                    <h4 className="font-semibold text-sm text-gray-900">Hostinger Official Mail</h4>
+                    <a
+                      href="mailto:contact@dasaexports.com"
+                      className="text-xs text-emerald-700 font-semibold mt-0.5 block hover:underline"
+                    >
+                      contact@dasaexports.com
+                    </a>
                   </div>
                 </div>
               </div>

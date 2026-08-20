@@ -26,9 +26,9 @@
   --moringa:    #8fae6b;
 
   /* Neutrals */
-  --cream:      #f6efde;
-  --cream-dim:  rgba(246,239,222,0.65);
-  --cream-faint:rgba(246,239,222,0.12);
+  --cream:      #ffffff;
+  --cream-dim:  rgba(255,255,255,0.75);
+  --cream-faint:rgba(255,255,255,0.12);
   --white-glass:rgba(255,255,255,0.06);
 }
 
