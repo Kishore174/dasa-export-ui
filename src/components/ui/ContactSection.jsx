@@ -1,451 +1,273 @@
-import React, { useState } from "react";
-import { Phone, Mail, MapPin, Send, CheckCircle2, Clock, MessageSquare, Anchor, Building2 } from "lucide-react";
+import React, { useState } from 'react';
+import { PRODUCTS } from '../../data/productsData';
+import { PhoneCall, Mail, MapPin, Globe, ArrowUpRight, ShieldCheck } from 'lucide-react';
 
-const ContactSection = () => {
+export default function ContactSection({ selectedProductName = '' }) {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    country: "",
-    product: "Tomato Powder",
-    volume: "1 - 5 Metric Tons",
-    message: "",
+    name: '',
+    company: '',
+    country: '',
+    email: '',
+    product: selectedProductName || 'Tomato Powder',
+    quantity: '',
+    message: ''
   });
-
-  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-{errorMsg && (
-  <div className="p-4 rounded-xl border border-red-200 bg-red-50 text-red-700 text-sm">
-    {errorMsg}
-  </div>
-)}
-const handleSubmit = async (e) => {
-  e.preventDefault();
 
-  setLoading(true);
-  setErrorMsg("");
-
-  try {
-    const response = await fetch(
-      "https://formsubmit.co/ajax/contact@dasaexports.com",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          _subject: `New Export Inquiry from ${formData.name} (${formData.country})`,
-          _replyto: formData.email,
-          _captcha: "false",
-
-          "Buyer Name": formData.name,
-          "Business Email": formData.email,
-          "Phone / WhatsApp": formData.phone,
-          "Destination Country": formData.country,
-          "Product Interest": formData.product,
-          "Order Quantity": formData.volume,
-          "Buyer Message": formData.message,
-        }),
-      }
-    );
-
-    const data = await response.json();
-
-    console.log("FormSubmit response:", data);
-
-    if (response.ok && data.success) {
-      setSubmitted(true);
-    } else {
-      setErrorMsg(
-        data.message || "Unable to submit the inquiry. Please try again."
-      );
-    }
-  } catch (error) {
-    console.error("FormSubmit error:", error);
-
-    setErrorMsg(
-      "Unable to connect to the inquiry service. Please try again."
-    );
-  } finally {
-    setLoading(false);
-  }
-};
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
   };
+
+  const update = (field) => (e) =>
+    setFormData({ ...formData, [field]: e.target.value });
 
   return (
     <section
-      id="contact"
-      className="relative py-28 font-body overflow-hidden"
-      style={{ background: "#FFFFFF" }}
+      className="w-full bg-white py-20 md:py-28 border-t border-slate-200/60"
+      id="quote-form"
     >
-      {/* Subtle background grid pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.06] pointer-events-none"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(13,24,16,0.8) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
 
-      <div className="relative max-w-7xl mx-auto px-6">
-        {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto">
-          <span
-            className="font-mono inline-flex items-center gap-2 px-4 py-2 rounded-full border text-[11px] uppercase tracking-[3px]"
-            style={{ borderColor: "rgba(13,24,16,0.15)", color: "var(--tomato-dark, #9A3020)" }}
-          >
-            <MessageSquare size={13} />
-            Export Inquiry &amp; Support
-          </span>
-
-          <h2
-            className="font-display text-4xl lg:text-5xl font-semibold mt-6"
-            style={{ color: "var(--ink, #0D1810)" }}
-          >
-            Get in touch with our export desk
-          </h2>
-
-          <p className="mt-6 text-gray-600 leading-8 text-lg">
-            Ready to source premium agricultural products, request bulk FOB/CIF pricing, or order lab samples? Fill in the details below.
-          </p>
-        </div>
-
-        {/* Content Layout */}
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 mt-16 items-start">
-          {/* Left Column — Interactive Contact Form */}
-          <div
-            className="bg-white rounded-[32px] p-8 md:p-12 border shadow-xl relative overflow-hidden"
-            style={{ borderColor: "rgba(13,24,16,0.08)" }}
-          >
-            <h3
-              className="font-display text-2xl font-semibold mb-2"
-              style={{ color: "var(--ink, #0D1810)" }}
-            >
-              Request a Bulk Quote or Sample
-            </h3>
-            <p className="text-gray-500 text-sm mb-8">
-              Our export specialists respond to all international inquiries within 4 business hours.
+          {/* Left Column (7 cols): Export Enquiry Form */}
+          <div className="md:col-span-7 md:pr-6">
+            <h2 className="font-display-lg text-4xl md:text-5xl text-[#0B2B1B] font-serif font-bold mb-4">
+              Export Enquiry
+            </h2>
+            <p className="font-body-md text-base text-[#5A4139] mb-10 max-w-xl leading-relaxed">
+              We welcome global partnerships. Share your requirements below and
+              our trade specialists will respond within 24 hours.
             </p>
 
             {submitted ? (
-              <div
-                className="p-8 rounded-[24px] border text-center my-12"
-                style={{
-                  background: "rgba(143,174,107,0.1)",
-                  borderColor: "var(--moringa, #8FAE6B)",
-                }}
-              >
-                <div
-                  className="w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4"
-                  style={{ background: "var(--moringa, #8FAE6B)", color: "#FFF" }}
-                >
-                  <CheckCircle2 size={32} />
+              <div className="bg-[#FAF8F2] p-8 border border-[#0B2B1B]/10 text-center space-y-4">
+                <div className="w-12 h-12 mx-auto rounded-full bg-[#2E7D32]/10 flex items-center justify-center">
+                  <ShieldCheck size={22} className="text-[#2E7D32]" />
                 </div>
-                <h4
-                  className="font-display text-2xl font-semibold"
-                  style={{ color: "var(--ink, #0D1810)" }}
-                >
-                  Inquiry Received Successfully!
-                </h4>
-                <p className="text-gray-600 mt-2 text-sm leading-relaxed max-w-md mx-auto">
-                  Thank you, <strong className="text-gray-900">{formData.name || "Valued Buyer"}</strong>. Our international export manager will send the specification sheet and price quote to your email.
+                <h3 className="font-display-lg text-2xl text-[#0B2B1B] font-serif font-bold">
+                  Enquiry Received
+                </h3>
+                <p className="font-body-md text-[#5A4139]">
+                  Thank you for reaching out to Dasa Export. We'll get back to
+                  you at <span className="font-semibold text-[#0B2B1B]">{formData.email}</span> within 24 hours.
                 </p>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="px-6 py-3 bg-[#F15A24] text-white font-eyebrow text-xs uppercase tracking-widest font-bold hover:bg-[#0B2B1B] transition-colors"
+                >
+                  Submit Another Enquiry
+                </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider mb-2 font-medium text-gray-700">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="e.g. Hans Mueller"
-                      className="w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 text-sm text-gray-800 transition"
-                      style={{
-                        borderColor: "rgba(13,24,16,0.15)",
-                        background: "#F9FAFB",
-                      }}
-                    />
-                  </div>
+              <form onSubmit={handleSubmit} className="space-y-8">
 
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider mb-2 font-medium text-gray-700">
-                      Business Email *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="e.g. hans@bavariaspice.de"
-                      className="w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 text-sm text-gray-800 transition"
-                      style={{
-                        borderColor: "rgba(13,24,16,0.15)",
-                        background: "#F9FAFB",
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider mb-2 font-medium text-gray-700">
-                      Phone / WhatsApp *
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+49 89 1234567"
-                      className="w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 text-sm text-gray-800 transition"
-                      style={{
-                        borderColor: "rgba(13,24,16,0.15)",
-                        background: "#F9FAFB",
-                      }}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider mb-2 font-medium text-gray-700">
-                      Destination Country *
-                    </label>
-                    <input
-                      type="text"
-                      name="country"
-                      required
-                      value={formData.country}
-                      onChange={handleChange}
-                      placeholder="e.g. Germany, UAE, USA"
-                      className="w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 text-sm text-gray-800 transition"
-                      style={{
-                        borderColor: "rgba(13,24,16,0.15)",
-                        background: "#F9FAFB",
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider mb-2 font-medium text-gray-700">
-                      Product Interest
-                    </label>
-                    <select
-                      name="product"
-                      value={formData.product}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 text-sm text-gray-800 transition bg-white"
-                      style={{
-                        borderColor: "rgba(13,24,16,0.15)",
-                      }}
-                    >
-                      <option value="Tomato Powder">Tomato Powder</option>
-                      <option value="Moringa Powder">Organic Moringa Powder</option>
-                      <option value="Turmeric Powder">High Curcumin Turmeric</option>
-                      <option value="Beetroot Powder">Beetroot Powder</option>
-                      <option value="Onion Powder">Dehydrated Onion Powder</option>
-                      <option value="Garlic Powder">Garlic Powder</option>
-                      <option value="Multiple Products">Multiple Products (Full Container)</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider mb-2 font-medium text-gray-700">
-                      Order Quantity
-                    </label>
-                    <select
-                      name="volume"
-                      value={formData.volume}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 text-sm text-gray-800 transition bg-white"
-                      style={{
-                        borderColor: "rgba(13,24,16,0.15)",
-                      }}
-                    >
-                      <option value="Sample Pack">Sample Pack (500g - 5kg)</option>
-                      <option value="500kg - 1 Ton">500 kg - 1 Metric Ton</option>
-                      <option value="1 - 5 Metric Tons">1 - 5 Metric Tons</option>
-                      <option value="20ft FCL Container">20ft FCL Container (~12 Tons)</option>
-                      <option value="40ft FCL Container">40ft FCL Container (~24 Tons)</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider mb-2 font-medium text-gray-700">
-                    Message / Specifications
-                  </label>
-                  <textarea
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Specify mesh size, moisture limit, packaging preference, or port of destination (FOB/CIF)..."
-                    className="w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 text-sm text-gray-800 transition"
-                    style={{
-                      borderColor: "rgba(13,24,16,0.15)",
-                      background: "#F9FAFB",
-                    }}
+                {/* Row 1: Full Name & Company Name */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <Field
+                    label="Full Name"
+                    value={formData.name}
+                    onChange={update('name')}
+                    placeholder="e.g. Jane Doe"
+                    required
+                  />
+                  <Field
+                    label="Company Name"
+                    value={formData.company}
+                    onChange={update('company')}
+                    placeholder="Your Organization"
+                    required
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-4 rounded-full font-medium text-base flex items-center justify-center gap-3 transition-transform hover:-translate-y-0.5 shadow-lg disabled:opacity-70"
-                  style={{
-                    background: "var(--tomato, #C43E2A)",
-                    color: "var(--cream, #F6EFDE)",
-                  }}
-                >
-                  <Send size={18} />
-                  {loading ? "Sending Inquiry to Desk..." : "Submit Export Inquiry"}
-                </button>
+                {/* Row 2: Country of Destination & Email Address */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <Field
+                    label="Country of Destination"
+                    value={formData.country}
+                    onChange={update('country')}
+                    placeholder="e.g. Netherlands"
+                    required
+                  />
+                  <Field
+                    label="Email Address"
+                    type="email"
+                    value={formData.email}
+                    onChange={update('email')}
+                    placeholder="contact@dasaexports.com"
+                    required
+                  />
+                </div>
+
+                {/* Row 3: Product of Interest & Estimated Quantity */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div>
+                    <label className="font-eyebrow text-[11px] text-[#D4A359] uppercase tracking-[0.18em] block mb-2 font-bold">
+                      Product of Interest
+                    </label>
+                    <select
+                      value={formData.product}
+                      onChange={update('product')}
+                      className="w-full bg-transparent border-b border-[#DFDCD5] py-2 text-[#0B2B1B] focus:outline-none focus:border-[#F15A24] font-body-md text-sm transition-colors"
+                    >
+                      {PRODUCTS.map((p) => (
+                        <option key={p.id} value={p.name}>
+                          {p.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <Field
+                    label="Estimated Quantity (MT)"
+                    value={formData.quantity}
+                    onChange={update('quantity')}
+                    placeholder="e.g. 50"
+                  />
+                </div>
+
+                {/* Row 4: Additional Specifications */}
+                <div>
+                  <label className="font-eyebrow text-[11px] text-[#D4A359] uppercase tracking-[0.18em] block mb-2 font-bold">
+                    Additional Specifications
+                  </label>
+                  <textarea
+                    rows="3"
+                    value={formData.message}
+                    onChange={update('message')}
+                    placeholder="Certifications, packaging requirements, delivery schedule..."
+                    className="w-full bg-transparent border-b border-[#DFDCD5] py-2 text-[#0B2B1B] placeholder:text-[#B5B0A4] focus:outline-none focus:border-[#F15A24] font-body-md text-sm transition-colors resize-none"
+                  />
+                </div>
+
+                {/* Submit */}
+                <div className="pt-4">
+                  <button
+                    type="submit"
+                    className="group inline-flex items-center gap-2 px-8 py-4 bg-[#F15A24] text-white font-eyebrow text-xs uppercase tracking-[0.15em] font-bold hover:bg-[#0B2B1B] transition-colors"
+                  >
+                    <span>Submit Enquiry</span>
+                    <ArrowUpRight
+                      size={15}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                  </button>
+                </div>
               </form>
             )}
           </div>
 
-          {/* Right Column — Export Office & Contact Details */}
-          <div className="space-y-6">
-            {/* Quick Contact Cards */}
-            <div
-              className="bg-white rounded-[28px] p-8 border shadow-lg space-y-6"
-              style={{ borderColor: "rgba(13,24,16,0.08)" }}
-            >
-              <h3
-                className="font-display text-xl font-semibold flex items-center gap-2"
-                style={{ color: "var(--ink, #0D1810)" }}
-              >
-                <Building2 size={20} style={{ color: "var(--tomato, #C43E2A)" }} />
-                Export Headquarters
+          {/* Right Column (5 cols): Global Office */}
+          <div className="md:col-span-5 md:border-l md:border-[#E5E2D9] md:pl-10 space-y-10">
+            <div>
+              <h3 className="font-display-lg text-3xl md:text-4xl text-[#0B2B1B] font-serif font-bold mb-8">
+                Global Office
               </h3>
 
-              <div className="space-y-4">
+              <div className="space-y-8">
+                <ContactRow
+                  icon={<PhoneCall size={19} className="text-[#2E7D32]" />}
+                  label="Trade Desk / WhatsApp"
+                  href="https://wa.me/919894132848"
+                  external
+                >
+                  +91 98941 32848
+                </ContactRow>
+
+                <ContactRow
+                  icon={<Mail size={19} className="text-[#2E7D32]" />}
+                  label="General Inquiries"
+                  href="mailto:contact@dasaexports.com"
+                >
+                  contact@dasaexports.com
+                </ContactRow>
+
+                <ContactRow
+                  icon={<Globe size={19} className="text-[#2E7D32]" />}
+                  label="Official Website"
+                  href="https://www.dasaexports.com"
+                  external
+                >
+                  www.dasaexports.com
+                </ContactRow>
+
                 <div className="flex items-start gap-4">
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                    style={{ background: "rgba(196,62,42,0.1)", color: "var(--tomato, #C43E2A)" }}
-                  >
-                    <MapPin size={18} />
-                  </div>
+                  <MapPin size={19} className="text-[#2E7D32] mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-sm text-gray-900">Facility &amp; Processing Plant</h4>
-                    <p className="text-xs text-gray-600 mt-0.5 leading-relaxed">
-                      DASA Exports Pvt Ltd, Agricultural Industrial Zone, Tamil Nadu, India.
+                    <span className="font-eyebrow text-[10px] text-[#D4A359] uppercase tracking-[0.2em] font-bold block mb-1">
+                      Headquarters & Processing
+                    </span>
+                    <p className="text-[#0B2B1B] font-body-md text-sm leading-relaxed font-medium">
+                      Dasa Export <br />
+                      Tamil Nadu, India
                     </p>
                   </div>
                 </div>
-
-                <div className="flex items-start gap-4">
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                    style={{ background: "rgba(227,166,47,0.1)", color: "var(--turmeric, #E3A62F)" }}
-                  >
-                    <Phone size={18} />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm text-gray-900">Direct Desk &amp; WhatsApp</h4>
-                    <a
-                      href="tel:+919894132848"
-                      className="text-xs text-gray-600 mt-0.5 block hover:text-emerald-700 font-medium transition-colors"
-                    >
-                      +91 98941 32848
-                    </a>
-                    <a
-                      href="https://wa.me/919894132848"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[11px] font-mono text-emerald-700 mt-0.5 inline-block hover:underline"
-                    >
-                      ● 24/7 WhatsApp Chat Available
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                    style={{ background: "rgba(143,174,107,0.1)", color: "var(--moringa, #8FAE6B)" }}
-                  >
-                    <Mail size={18} />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm text-gray-900">Hostinger Official Mail</h4>
-                    <a
-                      href="mailto:contact@dasaexports.com"
-                      className="text-xs text-emerald-700 font-semibold mt-0.5 block hover:underline"
-                    >
-                      contact@dasaexports.com
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
 
-            {/* Logistics Ports Card */}
-            <div
-              className="rounded-[28px] p-8 border shadow-lg text-white"
-              style={{ background: "var(--forest-950, #122318)", borderColor: "rgba(246,239,222,0.14)" }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <Anchor size={22} style={{ color: "var(--turmeric, #E3A62F)" }} />
-                <h4 className="font-display text-lg font-semibold text-[#F6EFDE]">
-                  Nearest Dispatch Seaports
-                </h4>
-              </div>
-              <ul className="space-y-3 text-xs leading-relaxed" style={{ color: "rgba(246,239,222,0.75)" }}>
-                <li className="flex items-center justify-between border-b pb-2" style={{ borderColor: "rgba(246,239,222,0.1)" }}>
-                  <span>Tuticorin Port (VOC)</span>
-                  <span className="font-mono text-[10px]" style={{ color: "var(--turmeric, #E3A62F)" }}>Primary Container Port</span>
-                </li>
-                <li className="flex items-center justify-between border-b pb-2" style={{ borderColor: "rgba(246,239,222,0.1)" }}>
-                  <span>Chennai Seaport</span>
-                  <span className="font-mono text-[10px]" style={{ color: "var(--turmeric, #E3A62F)" }}>Air &amp; Sea Cargo</span>
-                </li>
-                <li className="flex items-center justify-between">
-                  <span>Cochin Port</span>
-                  <span className="font-mono text-[10px]" style={{ color: "var(--turmeric, #E3A62F)" }}>Western Logistics</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Operating Hours Card */}
-            <div
-              className="bg-white rounded-[28px] p-6 border flex items-center gap-4"
-              style={{ borderColor: "rgba(13,24,16,0.08)" }}
-            >
-              <div
-                className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
-                style={{ background: "rgba(196,62,42,0.08)", color: "var(--tomato, #C43E2A)" }}
-              >
-                <Clock size={22} />
-              </div>
-              <div>
-                <h4 className="font-semibold text-sm text-gray-900">Working Hours</h4>
-                <p className="text-xs text-gray-500 mt-0.5">
-                  Mon – Sat: 08:30 AM – 08:00 PM IST (GMT +5:30)
+            {/* Office preview card */}
+            <div className="pt-4">
+              <div className="border border-[#E5E2D9] overflow-hidden bg-[#FAF8F2] p-5 space-y-3">
+                <div className="flex justify-between items-center border-b border-[#0B2B1B]/10 pb-3">
+                  <span className="font-eyebrow text-[10px] text-[#D4A359] uppercase tracking-wider font-bold">
+                    Visit Us & Factory Tours
+                  </span>
+                  <span className="text-[11px] font-bold text-[#2E7D32] bg-[#2E7D32]/10 px-2 py-0.5">
+                    ISO & FSSAI
+                  </span>
+                </div>
+                <p className="text-xs text-[#5A4139] leading-relaxed">
+                  Scheduled factory visits and container loading audits are
+                  available on request for registered B2B buyers.
                 </p>
+                <div className="text-[11px] text-[#0B2B1B] font-bold">
+                  Phone / WhatsApp: +91 98941 32848
+                </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
   );
-};
+}
 
-export default ContactSection;
+function Field({ label, type = 'text', value, onChange, placeholder, required }) {
+  return (
+    <div>
+      <label className="font-eyebrow text-[11px] text-[#D4A359] uppercase tracking-[0.18em] block mb-2 font-bold">
+        {label}
+      </label>
+      <input
+        required={required}
+        type={type}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className="w-full bg-transparent border-b border-[#DFDCD5] py-2 text-[#0B2B1B] placeholder:text-[#B5B0A4] focus:outline-none focus:border-[#F15A24] font-body-md text-sm transition-colors"
+      />
+    </div>
+  );
+}
+
+function ContactRow({ icon, label, href, external, children }) {
+  return (
+    <div className="flex items-start gap-4">
+      <div className="mt-0.5">{icon}</div>
+      <div>
+        <span className="font-eyebrow text-[10px] text-[#D4A359] uppercase tracking-[0.2em] font-bold block mb-1">
+          {label}
+        </span>
+        <a
+          href={href}
+          target={external ? '_blank' : undefined}
+          rel={external ? 'noreferrer' : undefined}
+          className="text-[#0B2B1B] font-body-lg text-base font-medium hover:text-[#F15A24] transition-colors"
+        >
+          {children}
+        </a>
+      </div>
+    </div>
+  );
+}

@@ -12,9 +12,9 @@ const products = [
 ];
 
 const fieldStyle = {
-  background: "rgba(250,247,239,0.05)",
-  borderColor: "var(--line-dark)",
-  color: "var(--ivory)",
+  background: "#FAF8F2",
+  borderColor: "#DFDCD5",
+  color: "#0B2B1B",
 };
 
 const RequestEstimateForm = () => {
@@ -67,32 +67,29 @@ const RequestEstimateForm = () => {
 
   return (
     <div>
-      <div
-        className="rounded-2xl border p-8"
-        style={{ background: "var(--forest-2)", borderColor: "var(--line-dark)" }}
-      >
+      <div className="border p-8 bg-white border-[#0B2B1B]/10">
         <div className="flex items-center justify-between">
-          <p className="font-mono text-[11px] uppercase tracking-[2.5px]" style={{ color: "var(--gold)" }}>
+          <p className="font-eyebrow text-[11px] uppercase tracking-[2.5px]" style={{ color: "#D4A359" }}>
             Request Estimate
           </p>
-          <p className="font-mono text-[10px] tracking-wider" style={{ color: "rgba(250,247,239,0.35)" }}>
+          <p className="font-eyebrow text-[10px] tracking-wider" style={{ color: "#0B2B1B", opacity: 0.4 }}>
             REF 20260801
           </p>
         </div>
-        <h3 className="font-display text-2xl font-semibold mt-3" style={{ color: "var(--ivory)" }}>
+        <h3 className="font-headline-md text-2xl font-semibold mt-3" style={{ color: "#0B2B1B" }}>
           Get a shipment quote
         </h3>
-        <p className="text-sm mt-2" style={{ color: "rgba(250,247,239,0.55)" }}>
+        <p className="font-body-md text-sm mt-2" style={{ color: "#5A4139" }}>
           Tell us what you need — we'll reply with pricing and lead time.
         </p>
 
         {submitted ? (
-          <div className="mt-8 rounded-xl border p-6 text-center" style={{ borderColor: "var(--line-dark)" }}>
-            <CheckCircle2 size={26} style={{ color: "var(--sage)" }} className="mx-auto" />
-            <p className="font-display text-lg font-semibold mt-3" style={{ color: "var(--ivory)" }}>
+          <div className="mt-8 border p-6 text-center bg-[#FAF8F2] border-[#0B2B1B]/10">
+            <CheckCircle2 size={26} style={{ color: "#2E7D32" }} className="mx-auto" />
+            <p className="font-headline-md text-lg font-semibold mt-3" style={{ color: "#0B2B1B" }}>
               Request received
             </p>
-            <p className="text-sm mt-1" style={{ color: "rgba(250,247,239,0.55)" }}>
+            <p className="font-body-md text-sm mt-1" style={{ color: "#5A4139" }}>
               We'll get back to you at {values.email} within 4 hours.
             </p>
           </div>
@@ -103,7 +100,7 @@ const RequestEstimateForm = () => {
               placeholder="Name *"
               value={values.name}
               onChange={update("name")}
-              className="w-full rounded-lg border px-4 py-3 text-sm outline-none transition-colors focus:border-[var(--gold)] placeholder:text-[rgba(250,247,239,0.35)]"
+              className="w-full border px-4 py-3 text-sm outline-none transition-colors focus:border-[#F15A24] placeholder:text-[#8E7067]"
               style={fieldStyle}
             />
 
@@ -113,7 +110,7 @@ const RequestEstimateForm = () => {
                 placeholder="Email *"
                 value={values.email}
                 onChange={update("email")}
-                className="w-full rounded-lg border px-4 py-3 text-sm outline-none transition-colors focus:border-[var(--gold)] placeholder:text-[rgba(250,247,239,0.35)]"
+                className="w-full border px-4 py-3 text-sm outline-none transition-colors focus:border-[#F15A24] placeholder:text-[#8E7067]"
                 style={fieldStyle}
               />
               <input
@@ -121,7 +118,7 @@ const RequestEstimateForm = () => {
                 placeholder="Mobile"
                 value={values.mobile}
                 onChange={update("mobile")}
-                className="w-full rounded-lg border px-4 py-3 text-sm outline-none transition-colors focus:border-[var(--gold)] placeholder:text-[rgba(250,247,239,0.35)]"
+                className="w-full border px-4 py-3 text-sm outline-none transition-colors focus:border-[#F15A24] placeholder:text-[#8E7067]"
                 style={fieldStyle}
               />
             </div>
@@ -132,7 +129,7 @@ const RequestEstimateForm = () => {
                 placeholder="Country"
                 value={values.country}
                 onChange={update("country")}
-                className="w-full rounded-lg border px-4 py-3 text-sm outline-none transition-colors focus:border-[var(--gold)] placeholder:text-[rgba(250,247,239,0.35)]"
+                className="w-full border px-4 py-3 text-sm outline-none transition-colors focus:border-[#F15A24] placeholder:text-[#8E7067]"
                 style={fieldStyle}
               />
               <input
@@ -140,7 +137,7 @@ const RequestEstimateForm = () => {
                 placeholder="City"
                 value={values.city}
                 onChange={update("city")}
-                className="w-full rounded-lg border px-4 py-3 text-sm outline-none transition-colors focus:border-[var(--gold)] placeholder:text-[rgba(250,247,239,0.35)]"
+                className="w-full border px-4 py-3 text-sm outline-none transition-colors focus:border-[#F15A24] placeholder:text-[#8E7067]"
                 style={fieldStyle}
               />
             </div>
@@ -148,11 +145,11 @@ const RequestEstimateForm = () => {
             <select
               value={values.product}
               onChange={update("product")}
-              className="w-full rounded-lg border px-4 py-3 text-sm outline-none transition-colors focus:border-[var(--gold)]"
+              className="w-full border px-4 py-3 text-sm outline-none transition-colors focus:border-[#F15A24]"
               style={fieldStyle}
             >
               {products.map((p) => (
-                <option key={p} value={p} style={{ color: "#14211A" }}>
+                <option key={p} value={p} style={{ color: "#0B2B1B", background: "#FFFFFF" }}>
                   {p}
                 </option>
               ))}
@@ -163,15 +160,15 @@ const RequestEstimateForm = () => {
               rows={4}
               value={values.message}
               onChange={update("message")}
-              className="w-full rounded-lg border px-4 py-3 text-sm outline-none transition-colors resize-none focus:border-[var(--gold)] placeholder:text-[rgba(250,247,239,0.35)]"
+              className="w-full border px-4 py-3 text-sm outline-none transition-colors resize-none focus:border-[#F15A24] placeholder:text-[#8E7067]"
               style={fieldStyle}
             />
 
             <button
               onClick={handleSubmit}
               disabled={loading}
-              className="mt-1 w-full flex items-center justify-center gap-2 rounded-md px-6 py-3.5 font-medium text-sm transition-opacity hover:opacity-90 disabled:opacity-60"
-              style={{ background: "var(--terracotta)", color: "var(--ivory)" }}
+              className="mt-1 w-full flex items-center justify-center gap-2 px-6 py-3.5 font-medium text-sm transition-colors hover:bg-[#0B2B1B] disabled:opacity-60"
+              style={{ background: "#F15A24", color: "#FFFFFF" }}
             >
               {loading ? "Sending Quote Request..." : "Send request"}
               <ArrowRight size={16} />
@@ -181,14 +178,14 @@ const RequestEstimateForm = () => {
       </div>
 
       <div
-        className="flex items-center justify-center gap-6 mt-5 font-mono text-[10px] uppercase tracking-wider"
-        style={{ color: "rgba(250,247,239,0.5)" }}
+        className="flex items-center justify-center gap-6 mt-5 font-eyebrow text-[10px] uppercase tracking-wider"
+        style={{ color: "#5A4139" }}
       >
         <span className="flex items-center gap-1.5">
-          <Ship size={13} /> Global shipping
+          <Ship size={13} className="text-[#2E7D32]" /> Global shipping
         </span>
         <span className="flex items-center gap-1.5">
-          <Clock3 size={13} /> Reply within 24h
+          <Clock3 size={13} className="text-[#F15A24]" /> Reply within 24h
         </span>
       </div>
     </div>

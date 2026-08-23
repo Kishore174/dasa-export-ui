@@ -1,5 +1,5 @@
 import React from "react";
-import { Sprout, ShieldCheck, Globe, Award, CheckCircle2, ArrowRight, Building2, MapPin, Users, Target } from "lucide-react";
+import { Sprout, ShieldCheck, Globe, Award, ArrowRight, Building2 } from "lucide-react";
 import WhyChoose from "../components/ui/WhyChoose";
 import { Link } from "react-router-dom";
 
@@ -15,142 +15,135 @@ const values = [
     icon: Sprout,
     title: "100% Organic & Traceable",
     desc: "Every product batch originates from certified farm partners across South India, fully traceable from soil to final container seal.",
-    accent: "#8FAE6B",
+    accent: "#2E7D32",
   },
   {
     icon: ShieldCheck,
     title: "Uncompromised Quality Gate",
     desc: "Processed in GMP-certified facilities and validated by independent SGS & Geo-Chem laboratories prior to port dispatch.",
-    accent: "#B08A3E",
+    accent: "#F15A24",
   },
   {
     icon: Globe,
     title: "Seamless Global Freight",
     desc: "Handling door-to-port maritime shipping with complete APEDA, Phytosanitary, and customs clearance paperwork.",
-    accent: "#C43E2A",
+    accent: "#A16900",
   },
 ];
 
 const AboutPage = () => {
   return (
-    <div className="pt-[72px] font-body bg-white min-h-screen">
-      {/* Header Banner */}
-      <section className="relative py-28 bg-[#0A1A0F] text-white overflow-hidden">
-        {/* AI Generated Background Image */}
-        <div className="absolute inset-0 z-0">
+    <div className="font-body bg-white min-h-screen">
+      {/* Header Banner — Pure Light Crisp Theme */}
+      <section className="relative py-20 md:py-28 bg-[#FAF8F2] text-[#0B2B1B] overflow-hidden border-b border-slate-200/80">
+        {/* Soft Background Photography Layer */}
+        <div className="absolute inset-0 z-0 opacity-15 pointer-events-none">
           <img
             src="/about-hero-bg.jpg"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "https://images.unsplash.com/photo-1509358271058-acd02cc93898?auto=format&fit=crop&w=2000&q=85";
+            }}
             alt="South India Organic Spice Farm Plantation"
-            className="w-full h-full object-cover object-center scale-105"
-            style={{ filter: "brightness(0.7) contrast(1.1)" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(10,26,15,0.94) 0%, rgba(15,35,22,0.82) 50%, rgba(10,26,15,0.92) 100%)",
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(circle at 30% 40%, rgba(176,138,62,0.15) 0%, transparent 65%)",
-            }}
+            className="w-full h-full object-cover object-center"
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
-          <span className="font-mono inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[rgba(201,168,76,0.3)] bg-[rgba(10,26,15,0.6)] backdrop-blur-md text-[10.5px] uppercase tracking-[2.5px] text-[var(--gold)] mb-6">
-            <Building2 size={13} />
-            About DASA Exports
+        <div className="relative z-10 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+          <span className="font-eyebrow inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#0B2B1B]/15 bg-white/90 backdrop-blur-sm text-[11px] uppercase tracking-[0.2em] text-[#F15A24] font-bold mb-6 shadow-sm">
+            <Building2 size={14} className="text-[#F15A24]" />
+            About Dasa Export
           </span>
 
-          <h1 className="font-display text-4xl lg:text-6xl font-semibold max-w-3xl leading-tight">
-            Connecting India&rsquo;s agricultural richness to global markets
+          <h1 className="font-display-lg text-4xl md:text-6xl font-serif font-bold max-w-4xl leading-tight text-[#0B2B1B]">
+            Connecting India&rsquo;s Agricultural Richness to Global Markets.
           </h1>
 
-          <p className="mt-6 text-base lg:text-lg leading-8 text-[rgba(255,255,255,0.78)] max-w-2xl">
-            Headquartered in Tamil Nadu, India, DASA Exports is a premier grower, processor, and exporter of organic botanicals, dehydrated spices, and spray-dried agricultural powders.
+          <p className="mt-6 text-base md:text-lg leading-relaxed text-[#5A4139] max-w-2xl font-normal">
+            Headquartered in Tamil Nadu, India, Dasa Export is a premier grower, processor, and exporter of organic botanicals, dehydrated spices, and spray-dried agricultural powders.
           </p>
 
           {/* Stats strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-10 border-t border-[rgba(255,255,255,0.15)]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-10 border-t border-slate-200/80">
             {companyStats.map((st) => (
               <div key={st.label}>
-                <h3 className="font-display text-3xl lg:text-4xl font-bold text-[var(--gold)]">{st.value}</h3>
-                <p className="font-mono text-xs uppercase tracking-wider text-[rgba(255,255,255,0.6)] mt-1">{st.label}</p>
+                <h3 className="font-display-lg text-3xl md:text-5xl font-serif font-bold text-[#A16900]">{st.value}</h3>
+                <p className="font-eyebrow text-xs uppercase tracking-widest text-[#5A4139] mt-2 font-bold">{st.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Our Mission & Story */}
-      <section className="py-24 max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <span className="font-mono text-[11px] uppercase tracking-[2.5px] text-[var(--gold)]">
+      {/* Our Mission & Story Section — Optimized Responsive Layout */}
+      <section className="py-12 sm:py-16 md:py-24 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
+          
+          {/* Left Column (7 cols): Editorial Story */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            <span className="font-eyebrow text-xs uppercase tracking-[0.2em] text-[#D4A359] font-bold block mb-2 sm:mb-3">
               Our Legacy &amp; Vision
             </span>
 
-            <h2 className="font-display text-3xl lg:text-4xl font-semibold text-[var(--ink)] mt-4 leading-tight">
-              Pioneering sustainable agricultural exports from South India
+            <h2 className="font-display-lg text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[#0B2B1B] leading-tight sm:leading-snug">
+              Pioneering Sustainable Agricultural Exports from South India
             </h2>
 
-            <p className="mt-6 text-gray-600 leading-8">
-              Founded with a mission to deliver unadulterated Indian agricultural produce to international buyers, DASA Exports bridges smallholder organic farmers with food manufacturers across Europe, the Middle East, North America, and Asia-Pacific.
+            <p className="mt-4 sm:mt-6 text-[#5A4139] leading-relaxed text-sm sm:text-base">
+              Founded with a mission to deliver unadulterated Indian agricultural produce to international buyers, Dasa Export bridges smallholder organic farmers with food manufacturers across Europe, the Middle East, North America, and Asia-Pacific.
             </p>
 
-            <p className="mt-4 text-gray-600 leading-8">
-              From high-curcumin turmeric and spray-dried tomato powder to nutrient-dense moringa and cold-milled beetroot, our state-of-the-art processing facility ensures that natural flavor, color, and bio-active potency are fully preserved.
+            <p className="mt-3 sm:mt-4 text-[#5A4139] leading-relaxed text-sm sm:text-base">
+              From high-curcumin turmeric and spray-dried tomato powder to nutrient-dense moringa and cold-milled beetroot, our state-of-the-art processing facility in Tamil Nadu ensures that natural flavor, color, and bio-active potency are fully preserved.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3.5 sm:gap-4">
               <Link
                 to="/products"
-                className="px-6 py-3.5 rounded-lg bg-[var(--ink)] text-white font-medium text-sm flex items-center gap-2 transition-transform hover:scale-[1.02]"
+                className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-[#F15A24] text-white font-eyebrow text-xs uppercase tracking-[0.15em] font-bold rounded hover:bg-[#0B2B1B] transition-colors shadow-md w-full sm:w-auto text-center"
               >
-                Explore Export Products
-                <ArrowRight size={16} />
+                <span>Explore Export Products</span>
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/certificates"
-                className="px-6 py-3.5 rounded-lg border border-gray-300 font-medium text-sm text-[var(--ink)] flex items-center gap-2 hover:bg-gray-50"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-white border border-[#2E7D32] text-[#0B2B1B] font-eyebrow text-xs uppercase tracking-[0.15em] font-bold rounded hover:bg-[#FAF8F2] transition-colors shadow-sm w-full sm:w-auto text-center"
               >
-                <Award size={16} style={{ color: "var(--gold)" }} />
-                View Certifications
+                <Award size={16} className="text-[#D4A359]" />
+                <span>View Certifications</span>
               </Link>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-6">
+          {/* Right Column (5 cols): Responsive Values Cards */}
+          <div className="lg:col-span-5 grid grid-cols-1 gap-4 sm:gap-6 mt-2 lg:mt-0 w-full">
             {values.map((v) => {
               const Icon = v.icon;
 
               return (
                 <div
                   key={v.title}
-                  className="rounded-2xl border p-8 bg-[#F9FAFB] transition-all duration-300 hover:shadow-md"
-                  style={{ borderColor: "rgba(20,33,26,0.08)" }}
+                  className="border border-[#0B2B1B]/10 p-5 sm:p-6 md:p-8 bg-[#FAF8F2] rounded-xl transition-all duration-300 hover:border-[#0B2B1B]/25 hover:shadow-sm"
                 >
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className="flex items-center gap-3.5 sm:gap-4 mb-3 sm:mb-4">
                     <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center text-white"
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center text-white shrink-0 shadow-sm"
                       style={{ background: v.accent }}
                     >
-                      <Icon size={22} />
+                      <Icon size={20} className="sm:w-[22px] sm:h-[22px]" />
                     </div>
-                    <h3 className="font-display text-xl font-semibold text-[var(--ink)]">{v.title}</h3>
+                    <h3 className="font-display-lg text-lg sm:text-xl font-serif font-bold text-[#0B2B1B] leading-snug">
+                      {v.title}
+                    </h3>
                   </div>
-                  <p className="text-gray-600 text-sm leading-relaxed">{v.desc}</p>
+                  <p className="text-[#5A4139] text-xs sm:text-sm leading-relaxed">{v.desc}</p>
                 </div>
               );
             })}
           </div>
+
         </div>
       </section>
-
       {/* Why Choose Section */}
       <WhyChoose />
     </div>

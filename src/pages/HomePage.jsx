@@ -1,37 +1,31 @@
-import React from "react";
-import Hero from "../components/ui/Hero";
-import WhyChoose from "../components/ui/WhyChoose";
-import Products from "../components/ui/Products";
-import ExportProcess from "../components/ui/ExportProcess";
-// import Certificates from "../components/ui/Certificates";
-import Testimonials from "../components/ui/Testimonials";
-import ContactSection from "../components/ui/ContactSection";
+import React from 'react';
+import Hero from '../components/ui/Hero';
+import AboutStrip from '../components/ui/AboutStrip';
+import PortfolioShowcase from '../components/ui/PortfolioShowcase';
+import QualityBand from '../components/ui/QualityBand';
+import ExportTimeline from '../components/ui/ExportTimeline';
+import ContactSection from '../components/ui/ContactSection';
 
-const HomePage = () => {
+export default function HomePage() {
   return (
-    <>
-      {/* 1 · Hero section */}
+    <main className="bg-background text-on-background font-body-md text-body-md antialiased">
+      {/* 1 · Hero Section */}
       <Hero />
 
-      {/* 2 · Why Choose Us (About Summary) */}
-      <WhyChoose />
+      {/* 2 · About Strip */}
+      <AboutStrip />
 
-      {/* 3 · Products Catalog */}
-      <Products />
+      {/* 3 · Product Categories Editorial Showcase (Curated Ingredients) */}
+      <PortfolioShowcase />
 
-      {/* 4 · 5-Stage Export Pipeline */}
-      <ExportProcess />
+      {/* 4 · Quality Band (#012112 Uncompromising Global Standards) */}
+      <QualityBand />
 
-      {/* 5 · Certifications */}
-      {/* <Certificates /> */}
+      {/* 5 · Export Process Timeline (The Journey to You) */}
+      <ExportTimeline />
 
-      {/* 6 · Global Testimonials */}
-      <Testimonials />
-
-      {/* 7 · Contact & Inquiries */}
+      {/* 6 · Quote Form & Contact */}
       <ContactSection />
-    </>
+    </main>
   );
-};
-
-export default HomePage;
+}

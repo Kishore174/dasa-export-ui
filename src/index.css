@@ -3,53 +3,105 @@
 @tailwind utilities;
 
 /* ── Google Fonts ───────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
-/* ── Design Tokens (pulled from logo: deep forest green + gold) */
 :root {
-  /* Brand greens */
-  --forest-950: #0a1a0f;
-  --forest-900: #0d1f12;
-  --forest-800: #122918;
-  --forest-700: #1a3d22;
-  --forest-600: #1f4a28;
-
-  /* Gold / amber */
-  --gold:       #c9a84c;
-  --gold-light: #e8c97a;
-  --gold-muted: rgba(201,168,76,0.35);
-
-  /* Spice accents */
-  --tomato:     #c43e2a;
-  --tomato-glow:#e86b4f;
-  --turmeric:   #e3a62f;
-  --moringa:    #8fae6b;
-
-  /* Neutrals */
-  --cream:      #ffffff;
-  --cream-dim:  rgba(255,255,255,0.75);
-  --cream-faint:rgba(255,255,255,0.12);
-  --white-glass:rgba(255,255,255,0.06);
+  --forest-2: #012112;
+  --line-dark: rgba(0, 0, 0, 0.1);
+  --gold: #A16900;
+  --ivory: #ffffff;
+  --sage: #466552;
+  --terracotta: #F15A24;
 }
 
-/* ── Base ──────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #1b1c19;
+    overflow-x: hidden;
+  }
+}
 
-html { scroll-behavior: smooth; }
-
-body {
+/* Custom Editorial Classes */
+.font-eyebrow {
   font-family: 'Inter', sans-serif;
-  background: var(--forest-950);
-  color: var(--cream);
-  -webkit-font-smoothing: antialiased;
+  font-size: 12px;
+  line-height: 1.0;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
-/* ── Typography helpers ────────────────────────────────────── */
-.font-display { font-family: 'Playfair Display', serif; }
-.font-mono    { font-family: 'Space Mono', monospace; }
-.font-body    { font-family: 'Inter', sans-serif; }
+.font-body-lg {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+}
 
-/* ── Scrollbar ─────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--forest-900); }
-::-webkit-scrollbar-thumb { background: var(--gold-muted); border-radius: 3px; }
+.font-body-md {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.font-label-md {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.0;
+  font-weight: 500;
+}
+
+.font-display-lg {
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.font-headline-lg {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.font-headline-md {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.font-headline-lg-mobile {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .font-display-lg {
+    font-size: 42px;
+    line-height: 1.15;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: #466552;
+  border-radius: 4px;
+}

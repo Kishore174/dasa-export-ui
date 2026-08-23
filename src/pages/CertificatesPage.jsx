@@ -1,115 +1,119 @@
-import React, { useState } from "react";
-import { ExternalLink, X, Award } from "lucide-react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Maximize2, Grid, ZoomIn, ZoomOut, Share2, MoreHorizontal } from "lucide-react";
 
-const certificatesList = [
-  { id: "iso", image: "/certificates/iso.jpg", name: "ISO 22000 Certificate Scan" },
-  { id: "fssai", image: "/certificates/fssai.jpg", name: "FSSAI License Scan" },
-  { id: "apeda", image: "/certificates/apeda.jpg", name: "APEDA Registration Scan" },
-  { id: "organic", image: "/certificates/organic.jpg", name: "Organic NPOP Certificate Scan" },
-  { id: "haccp", image: "/certificates/haccp.jpg", name: "HACCP Certificate Scan" },
-  { id: "phytosanitary", image: "/certificates/phytosanitary.jpg", name: "Phytosanitary Certificate Scan" },
+const certificatesData = [
+  {
+    id: "gst",
+    image: "/certificates/iso.jpg",
+    title: "GST Certificate",
+    subtitle: "Goods and Services Tax Registration",
+    pages: "1/3",
+  },
+  {
+    id: "msme",
+    image: "/certificates/fssai.jpg",
+    title: "MSME Certificate",
+    subtitle: "Udyam Registration Certificate",
+    pages: "1/3",
+  },
+  {
+    id: "bank",
+    image: "/certificates/apeda.jpg",
+    title: "Bank Certificate",
+    subtitle: "Commercial Banking & Export Account Verification",
+    pages: "1/1",
+  },
+  {
+    id: "iec",
+    image: "/certificates/haccp.jpg",
+    title: "IEC Certificate",
+    subtitle: "Import Export Code Registration",
+    pages: "1/2",
+  },
+  {
+    id: "fssai",
+    image: "/certificates/organic.jpg",
+    title: "FSSAI License",
+    subtitle: "Food Safety and Standards Authority of India",
+    pages: "1/1",
+  },
+  {
+    id: "apeda",
+    image: "/certificates/apeda.jpg",
+    title: "APEDA Certificate",
+    subtitle: "Agricultural & Processed Food Products Export Development Authority",
+    pages: "1/2",
+  },
 ];
 
 const CertificatesPage = () => {
-  const [selectedCert, setSelectedCert] = useState(null);
-
   return (
-    <div className="pt-[72px] font-body bg-white min-h-screen">
-      {/* Neat Clean Header Banner */}
-      <section className="relative py-20 bg-[#0A1A0F] text-white overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/certificates-hero-bg.jpg"
-            alt="Certificates"
-            className="w-full h-full object-cover object-center"
-            style={{ filter: "brightness(0.65) contrast(1.1)" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(10,26,15,0.92) 0%, rgba(10,26,15,0.85) 100%)",
-            }}
-          />
+    <div className="font-body bg-white min-h-screen text-[#0B2B1B] pt-12 pb-24">
+
+      {/* Header Section — Neat & Clean */}
+      <section className="text-center max-w-xl mx-auto mb-12 px-margin-mobile">
+        
+        {/* Brand Pill */}
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FAF8F2] border border-slate-200 text-[11px] text-[#0B2B1B] font-bold rounded-full mb-3 shadow-2xs">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#F15A24]" />
+          <span>Dasa Export</span>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 text-center max-w-3xl">
-          <span className="font-mono inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.08)] text-[10.5px] uppercase tracking-[2.5px] text-[var(--gold)] mb-4">
-            <Award size={13} />
-            Statutory Certifications
-          </span>
-
-          <h1 className="font-display text-4xl lg:text-5xl font-semibold tracking-tight">
-            Official Certificates
-          </h1>
-
-          <p className="mt-4 text-base leading-8 text-[rgba(255,255,255,0.75)]">
-            Click any certificate scan below to view the full high-resolution document.
-          </p>
-        </div>
+        {/* Title matching reference screenshot */}
+        <h1 className="font-headline-md font-serif text-2xl md:text-3xl font-bold uppercase tracking-widest text-[#0B2B1B]">
+          OUR CERTIFICATE
+        </h1>
       </section>
 
-      {/* Pure Certificate Image Gallery Grid — No Extra Text */}
-      <section className="py-20 max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {certificatesList.map((cert) => (
+      {/* Neat PDF Document Cards Grid */}
+      <section className="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10 items-start">
+          {certificatesData.map((cert) => (
             <div
               key={cert.id}
-              onClick={() => setSelectedCert(cert)}
-              className="group rounded-3xl border border-gray-100 bg-white p-4 transition-all duration-300 hover:shadow-2xl hover:border-gray-300 cursor-pointer overflow-hidden relative"
+              className="flex flex-col items-center group"
             >
-              {/* Certificate Scan Image Only */}
-              <div className="h-80 w-full rounded-2xl bg-gray-50 flex items-center justify-center p-3 overflow-hidden relative">
-                <img
-                  src={cert.image}
-                  alt={cert.name}
-                  className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
-                />
-
-                {/* Subtle Hover Inspection Badge */}
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-mono text-xs uppercase tracking-wider gap-2 font-medium">
-                  <ExternalLink size={16} /> View Full Certificate
+              {/* Dark Grey Document Frame Container */}
+              <div className="w-full bg-[#555555] p-2.5 rounded-sm shadow-md group-hover:bg-[#333333] transition-colors duration-200">
+                
+                {/* White A4 Document Viewer Sheet */}
+                <div className="bg-white aspect-[1/1.3] w-full p-2.5 overflow-hidden flex items-center justify-center relative shadow-inner">
+                  <img
+                    src={cert.image}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src =
+                        "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80";
+                    }}
+                    alt={cert.title}
+                    className="w-full h-full object-contain object-top shadow-2xs"
+                  />
                 </div>
+
+                {/* PDF Viewer Bottom Toolbar inside Frame */}
+                <div className="bg-[#444444] text-white/80 py-1.5 px-3 flex items-center justify-between text-[11px] font-mono border-t border-[#666666] select-none">
+                  <span>{cert.pages}</span>
+                  <div className="flex items-center gap-2.5 text-white/70">
+                    <Grid size={13} className="hover:text-white cursor-pointer" />
+                    <ZoomIn size={13} className="hover:text-white cursor-pointer" />
+                    <ZoomOut size={13} className="hover:text-white cursor-pointer" />
+                    <Maximize2 size={13} className="hover:text-white cursor-pointer" />
+                    <Share2 size={13} className="hover:text-white cursor-pointer" />
+                    <MoreHorizontal size={13} className="hover:text-white cursor-pointer" />
+                  </div>
+                </div>
+
               </div>
+
+              {/* Title Centered Under Document Frame */}
+              <h3 className="font-display-lg text-base md:text-lg font-serif font-bold text-[#0B2B1B] text-center mt-3.5 group-hover:text-[#F15A24] transition-colors">
+                {cert.title}
+              </h3>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Clean Fullscreen Image Viewer Modal */}
-      {selectedCert && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-          <div className="bg-white rounded-3xl max-w-3xl w-full p-6 relative border border-gray-100 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col items-center">
-            <button
-              onClick={() => setSelectedCert(null)}
-              className="absolute top-5 right-5 p-2.5 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors z-10"
-            >
-              <X size={20} />
-            </button>
-
-            <div className="w-full h-full flex items-center justify-center bg-gray-50 rounded-2xl p-4 overflow-hidden my-4">
-              <img
-                src={selectedCert.image}
-                alt={selectedCert.name}
-                className="max-h-[70vh] w-auto object-contain rounded-lg shadow-md"
-              />
-            </div>
-
-            <div className="w-full flex items-center justify-between pt-2">
-              <span className="text-xs font-mono text-gray-500 font-semibold">{selectedCert.name}</span>
-              <Link
-                to="/contact"
-                onClick={() => setSelectedCert(null)}
-                className="px-6 py-2.5 rounded-xl bg-[var(--ink)] text-white font-medium text-xs uppercase tracking-wider hover:bg-black transition-colors"
-              >
-                Request Verification
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

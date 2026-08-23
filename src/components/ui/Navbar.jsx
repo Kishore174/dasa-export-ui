@@ -1,164 +1,136 @@
-import React, { useState, useEffect } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import logo from "../../assets/logo.jpeg";
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 
-export const DesignTokens = () => (
-  <style>{`
-    @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
-
-    :root {
-      --ink: #14211A;
-      --forest: #1B3025;
-      --forest-2: #223A2C;
-      --ivory: #FFFFFF;
-      --gold: #B08A3E;
-      --terracotta: #B54B32;
-      --sage: #7C9473;
-      --line-dark: rgba(255,255,255,0.14);
-      --line-light: rgba(20,33,26,0.12);
-    }
-    .font-display { font-family: 'Fraunces', serif; }
-    .font-mono { font-family: 'IBM Plex Mono', monospace; }
-    .font-body { font-family: 'Inter', sans-serif; }
-
-    a, button { -webkit-tap-highlight-color: transparent; }
-    :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; }
-    }
-  `}</style>
-);
-
-const navLinks = [
-  { name: "Home", path: "/" },
-  { name: "About Us", path: "/about" },
-  { name: "Products", path: "/products" },
-  { name: "Certificates", path: "/certificates" },
-  { name: "Payment Terms", path: "/payment-terms" },
-  { name: "Contact", path: "/contact" },
-];
-
-const Navbar = () => {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+export default function Navbar({ onOpenQuoteModal }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Products', path: '/products' },
+    // { name: 'Catalog', path: '/catalog' },
+    { name: 'Certificates', path: '/certificates' },
+    { name: 'Payment', path: '/payment-terms' },
+  ];
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setOpen(false);
-  }, [location.pathname]);
+  const handleQuoteClick = () => {
+    const quoteEl = document.getElementById('quote-form');
+    if (quoteEl) {
+      quoteEl.scrollIntoView({ behavior: 'smooth' });
+    } else if (onOpenQuoteModal) {
+      onOpenQuoteModal();
+    } else {
+      window.location.href = '/contact';
+    }
+  };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 font-body">
-      <nav
-        className="transition-all duration-300 border-b"
-        style={{
-          background: scrolled ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0.88)",
-          backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)",
-          borderColor: scrolled ? "var(--line-light)" : "transparent",
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-[84px]">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3.5 cursor-pointer">
-            <div className="h-14 w-14 rounded-full overflow-hidden shrink-0 border-2 shadow-md" style={{ borderColor: "rgba(201,168,76,0.4)" }}>
-              <img src={logo} alt="Dasa Exports" className="h-full w-full object-cover scale-105" />
-            </div>
-            <div className="leading-none">
-              <h2 className="font-display font-bold text-2xl tracking-tight" style={{ color: "var(--ink)" }}>
-                Dasa Exports
-              </h2>
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[2.8px] mt-1" style={{ color: "var(--gold)" }}>
-                India — To The World
-              </p>
-            </div>
-          </Link>
-
-          {/* Desktop menu */}
-          <ul className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <NavLink
-                  to={link.path}
-                  className={({ isActive }) =>
-                    `text-[13.5px] font-medium tracking-wide transition-colors ${
-                      isActive ? "text-[var(--gold)] font-semibold" : "text-gray-700 hover:text-[var(--gold)]"
-                    }`
-                  }
-                >
-                  {link.name}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-
-          {/* CTA */}
-          <div className="hidden lg:flex items-center">
-            <Link
-              to="/contact"
-              className="px-5 py-2.5 rounded-md font-medium text-[13.5px] transition-transform hover:scale-105"
-              style={{ background: "var(--ink)", color: "#FFFFFF" }}
-            >
-              Request a Quote
-            </Link>
+    <header className="w-full sticky top-0 z-50 bg-white border-b border-[#0B2B1B]/10 shadow-sm transition-all duration-300 ease-in-out">
+      
+      {/* Top Contact Bar — Desktop/Tablet Only (Hidden on Mobile) */}
+      <div className="hidden sm:block bg-[#021c10] text-white text-[11px] py-1.5 px-margin-mobile md:px-margin-desktop border-b border-white/5">
+        <div className="max-w-[1440px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-4 font-eyebrow tracking-wider text-center sm:text-left">
+          
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-6">
+            <span className="truncate">ISO · FSSAI · APEDA · HACCP CERTIFIED</span>
+            <span className="hidden lg:inline opacity-40">|</span>
+            <span className="hidden lg:inline">TAMIL NADU, INDIA</span>
           </div>
 
-          {/* Mobile toggle */}
+          <div className="flex items-center justify-center gap-3 sm:gap-4">
+            <a href="mailto:contact@dasaexports.com" className="hover:text-[#F15A24] transition-colors truncate">
+              contact@dasaexports.com
+            </a>
+            <span className="opacity-40">|</span>
+            <a href="https://wa.me/919894132848" target="_blank" rel="noreferrer" className="text-[#F15A24] font-bold hover:underline whitespace-nowrap">
+              +91 98941 32848
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Main Navigation Bar */}
+      <nav className="w-full bg-white/95 backdrop-blur-md">
+        <div className="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-[1440px] mx-auto">
+
+          {/* Brand Logo */}
+          <Link className="font-headline-md text-2xl md:text-3xl text-[#0B2B1B] hover:text-[#F15A24] transition-colors font-serif font-bold" to="/">
+            Dasa Export<span className="text-[#F15A24]">.</span>
+          </Link>
+
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:flex items-center gap-gutter">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`font-eyebrow text-eyebrow tracking-widest uppercase transition-colors pb-1 border-b ${
+                    isActive
+                      ? 'text-[#F15A24] border-[#F15A24] font-bold'
+                      : 'text-[#0B2B1B]/70 border-transparent hover:text-[#F15A24]'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Request Quote CTA Button */}
           <button
-            className="lg:hidden h-9 w-9 flex items-center justify-center text-gray-900"
-            onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
+            onClick={handleQuoteClick}
+            className="hidden md:inline-flex items-center justify-center px-6 py-3 bg-[#F15A24] text-white font-label-md text-label-md hover:bg-[#0B2B1B] transition-colors duration-200"
           >
-            {open ? <X size={22} /> : <Menu size={22} />}
+            Request Quote
           </button>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden text-[#0B2B1B] p-1"
+            aria-label="Toggle Menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
         </div>
 
-        {/* Mobile menu */}
-        {open && (
-          <div className="lg:hidden border-t bg-white shadow-xl" style={{ borderColor: "var(--line-light)" }}>
-            <ul>
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <NavLink
-                    to={link.path}
-                    onClick={() => setOpen(false)}
-                    className={({ isActive }) =>
-                      `px-6 py-4 flex items-center justify-between text-sm border-b last:border-b-0 ${
-                        isActive ? "text-[var(--gold)] font-bold bg-gray-50" : "text-gray-800"
-                      }`
-                    }
-                  >
-                    {link.name}
-                    <ArrowUpRight size={15} style={{ color: "var(--gold)" }} />
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-            <div className="px-6 py-5">
-              <Link
-                to="/contact"
-                onClick={() => setOpen(false)}
-                className="block text-center w-full px-5 py-3 rounded-md font-medium text-sm text-white"
-                style={{ background: "var(--ink)" }}
-              >
-                Request a Quote
-              </Link>
-            </div>
+        {/* Mobile Navigation Drawer */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-b border-[#0B2B1B]/10 px-margin-mobile py-4 space-y-3">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block font-eyebrow text-eyebrow py-2 border-b border-[#0B2B1B]/10 transition-colors ${
+                    isActive ? 'text-[#F15A24] font-bold' : 'text-[#0B2B1B]/70 hover:text-[#F15A24]'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                handleQuoteClick();
+              }}
+              className="w-full mt-2 px-6 py-3 bg-[#F15A24] text-white font-label-md text-label-md text-center hover:bg-[#0B2B1B] transition-colors duration-200"
+            >
+              Request Quote
+            </button>
           </div>
         )}
       </nav>
     </header>
   );
-};
-
-export default Navbar;
+}
