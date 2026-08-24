@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar({ onOpenQuoteModal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
     { name: 'Products', path: '/products' },
-    // { name: 'Catalog', path: '/catalog' },
+    { name: 'Catalogue', path: '/catalogue' },
     { name: 'Certificates', path: '/certificates' },
     { name: 'Payment', path: '/payment-terms' },
   ];
@@ -27,7 +36,9 @@ export default function Navbar({ onOpenQuoteModal }) {
   };
 
   return (
-    <header className="w-full sticky top-0 z-50 bg-white border-b border-[#0B2B1B]/10 shadow-sm transition-all duration-300 ease-in-out">
+    <header className={`w-full sticky top-0 z-50 transition-all duration-500 ease-out ${
+      scrolled ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-white shadow-sm'
+    }`}>
       
       {/* Top Contact Bar — Desktop/Tablet Only (Hidden on Mobile) */}
       <div className="hidden sm:block bg-[#021c10] text-white text-[11px] py-1.5 px-margin-mobile md:px-margin-desktop border-b border-white/5">
@@ -69,13 +80,19 @@ export default function Navbar({ onOpenQuoteModal }) {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`font-eyebrow text-eyebrow tracking-widest uppercase transition-colors pb-1 border-b ${
+                  className={`relative font-eyebrow text-eyebrow tracking-widest uppercase transition-colors pb-1 group ${
                     isActive
-                      ? 'text-[#F15A24] border-[#F15A24] font-bold'
-                      : 'text-[#0B2B1B]/70 border-transparent hover:text-[#F15A24]'
+                      ? 'text-[#F15A24] font-bold'
+                      : 'text-[#0B2B1B]/70 hover:text-[#F15A24]'
                   }`}
                 >
                   {link.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#F15A24] rounded-full transition-all duration-300" />
+                  )}
+                  {!isActive && (
+                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#F15A24] rounded-full transition-all duration-300 group-hover:w-full" />
+                  )}
                 </Link>
               );
             })}
@@ -84,7 +101,7 @@ export default function Navbar({ onOpenQuoteModal }) {
           {/* Request Quote CTA Button */}
           <button
             onClick={handleQuoteClick}
-            className="hidden md:inline-flex items-center justify-center px-6 py-3 bg-[#F15A24] text-white font-label-md text-label-md hover:bg-[#0B2B1B] transition-colors duration-200"
+            className="hidden md:inline-flex items-center justify-center px-6 py-3 bg-[#F15A24] text-white font-label-md text-label-md hover:bg-[#0B2B1B] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 rounded"
           >
             Request Quote
           </button>

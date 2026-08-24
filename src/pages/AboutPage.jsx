@@ -10,6 +10,78 @@ const companyStats = [
   { label: "Annual Export Capacity", value: "5,000+ MT" },
 ];
 
+const AnimatedStat = ({ label, value }) => {
+  const [count, setCount] = React.useState(0);
+  const [hasAnimated, setHasAnimated] = React.useState(false);
+  const elementRef = React.useRef(null);
+
+  // Parse the value string (e.g., "5,000+ MT" -> prefix: "", number: 5000, suffix: "+ MT")
+  const match = String(value).match(/^([^0-9]*)?([0-9,]+)([^0-9]*)?$/);
+  const prefix = match ? (match[1] || "") : "";
+  const rawNumber = match ? parseInt(match[2].replace(/,/g, ''), 10) : 0;
+  const suffix = match ? (match[3] || "") : "";
+  
+  // Year values should start closer to target instead of 0
+  const isYear = rawNumber > 1900 && rawNumber <= 2100;
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+    return () => observer.disconnect();
+  }, [hasAnimated]);
+
+  React.useEffect(() => {
+    if (!hasAnimated || !rawNumber) return;
+
+    let start = isYear ? 1990 : 0;
+    const duration = 2000; // 2 seconds
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      
+      // easeOutExpo for smooth deceleration
+      const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      
+      setCount(Math.floor(start + (rawNumber - start) * easeProgress));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(rawNumber);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [hasAnimated, rawNumber, isYear]);
+
+  const displayCount = hasAnimated 
+    ? (isYear ? count : count.toLocaleString()) 
+    : (isYear ? 1990 : 0);
+
+  return (
+    <div ref={elementRef} className="opacity-0 animate-fade-in [animation-fill-mode:forwards] group">
+      <h3 className="font-display-lg text-4xl md:text-5xl font-serif font-bold text-white group-hover:scale-105 transition-transform duration-500 ease-out origin-left drop-shadow-md">
+        {prefix}{displayCount}{suffix}
+      </h3>
+      <p className="font-eyebrow text-xs uppercase tracking-widest text-white/70 mt-2 font-bold drop-shadow-sm">
+        {label}
+      </p>
+    </div>
+  );
+};
+
 const values = [
   {
     icon: Sprout,
@@ -34,10 +106,10 @@ const values = [
 const AboutPage = () => {
   return (
     <div className="font-body bg-white min-h-screen">
-      {/* Header Banner — Pure Light Crisp Theme */}
-      <section className="relative py-20 md:py-28 bg-[#FAF8F2] text-[#0B2B1B] overflow-hidden border-b border-slate-200/80">
-        {/* Soft Background Photography Layer */}
-        <div className="absolute inset-0 z-0 opacity-15 pointer-events-none">
+      {/* Header Banner — Premium Cinematic Theme */}
+      <section className="relative py-20 md:py-28 bg-black text-white overflow-hidden border-b border-white/10">
+        {/* Cinematic Background Image Layer */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
           <img
             src="/about-hero-bg.jpg"
             onError={(e) => {
@@ -45,31 +117,29 @@ const AboutPage = () => {
               e.target.src = "https://images.unsplash.com/photo-1509358271058-acd02cc93898?auto=format&fit=crop&w=2000&q=85";
             }}
             alt="South India Organic Spice Farm Plantation"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center opacity-70"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
         </div>
 
         <div className="relative z-10 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
-          <span className="font-eyebrow inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#0B2B1B]/15 bg-white/90 backdrop-blur-sm text-[11px] uppercase tracking-[0.2em] text-[#F15A24] font-bold mb-6 shadow-sm">
+          <span className="font-eyebrow inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-[11px] uppercase tracking-[0.2em] text-white font-bold mb-6 shadow-sm">
             <Building2 size={14} className="text-[#F15A24]" />
             About Dasa Export
           </span>
 
-          <h1 className="font-display-lg text-4xl md:text-6xl font-serif font-bold max-w-4xl leading-tight text-[#0B2B1B]">
+          <h1 className="font-display-lg text-4xl md:text-6xl font-serif font-bold max-w-4xl leading-tight text-white drop-shadow-xl">
             Connecting India&rsquo;s Agricultural Richness to Global Markets.
           </h1>
 
-          <p className="mt-6 text-base md:text-lg leading-relaxed text-[#5A4139] max-w-2xl font-normal">
+          <p className="mt-6 text-base md:text-lg leading-relaxed text-white/90 max-w-2xl font-normal drop-shadow-md">
             Headquartered in Tamil Nadu, India, Dasa Export is a premier grower, processor, and exporter of organic botanicals, dehydrated spices, and spray-dried agricultural powders.
           </p>
 
           {/* Stats strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-10 border-t border-slate-200/80">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-10 border-t border-white/10">
             {companyStats.map((st) => (
-              <div key={st.label}>
-                <h3 className="font-display-lg text-3xl md:text-5xl font-serif font-bold text-[#A16900]">{st.value}</h3>
-                <p className="font-eyebrow text-xs uppercase tracking-widest text-[#5A4139] mt-2 font-bold">{st.label}</p>
-              </div>
+              <AnimatedStat key={st.label} label={st.label} value={st.value} />
             ))}
           </div>
         </div>

@@ -12,30 +12,45 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#021c10] w-full text-white">
+    <footer className="relative w-full text-white overflow-hidden bg-[#021c10]">
+      {/* Premium Cinematic Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img src="/contact-hero-bg.jpg" className="w-full h-full object-cover object-center opacity-40" alt="Premium Export Background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#021c10]/95 via-[#021c10]/80 to-[#010e08]" />
+        <div className="absolute inset-0 bg-black/30" />
+        {/* Subtle Ambient Glow */}
+        <div className="absolute bottom-0 right-0 w-2/3 h-full bg-[#D4A359]/10 blur-[130px] rounded-full mix-blend-overlay" />
+      </div>
+
       {/* Signature statement band */}
-      <div className="border-b border-white/10">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 px-margin-mobile md:px-margin-desktop w-full max-w-[1440px] mx-auto pt-20 md:pt-24 pb-14 md:pb-16">
-          <h3 className="font-display-lg font-serif font-bold text-white text-3xl md:text-5xl leading-tight max-w-xl">
-            Nature's Finest,
-            <br />
-            Delivered Worldwide.
-          </h3>
+      <div className="relative z-10 border-b border-white/10 bg-white/5 backdrop-blur-sm">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 px-margin-mobile md:px-margin-desktop w-full max-w-[1440px] mx-auto py-12 md:py-16">
+          <div>
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#D4A359]/30 bg-[#D4A359]/10 text-[10px] uppercase tracking-[0.2em] text-[#D4A359] font-bold mb-4 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D4A359] animate-pulse" />
+              Global Supply
+            </span>
+            <h3 className="font-display-lg font-serif font-bold text-white text-3xl md:text-5xl leading-tight max-w-xl drop-shadow-xl">
+              Nature's Finest,
+              <br className="hidden md:block" />
+              Delivered Worldwide.
+            </h3>
+          </div>
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-3 font-eyebrow text-xs uppercase tracking-[0.18em] font-bold text-[#021c10] bg-[#F15A24] px-7 py-4 hover:bg-[#D4A359] transition-colors w-fit"
+            className="group shrink-0 inline-flex items-center gap-3 font-eyebrow text-xs uppercase tracking-[0.18em] font-bold text-white bg-[#F15A24] px-8 py-4.5 rounded-sm hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(241,90,36,0.3)] transition-all duration-400 ease-out"
           >
             Start an Export Enquiry
             <ArrowUpRight
-              size={16}
-              className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              size={18}
+              className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
             />
           </Link>
         </div>
       </div>
 
       {/* Main columns */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 px-margin-mobile md:px-margin-desktop w-full max-w-[1440px] mx-auto py-16 md:py-20">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 px-margin-mobile md:px-margin-desktop w-full max-w-[1440px] mx-auto py-10 md:py-12">
 
         {/* Brand */}
         <div className="md:col-span-4 flex flex-col justify-between">
@@ -180,12 +195,12 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10">
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4 px-margin-mobile md:px-margin-desktop w-full max-w-[1440px] mx-auto py-6">
-          <p className="font-eyebrow text-[10px] text-white/40 uppercase tracking-[0.15em] font-semibold text-center md:text-left">
+      <div className="relative z-10 border-t border-white/10 bg-black/20">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4 px-margin-mobile md:px-margin-desktop w-full max-w-[1440px] mx-auto py-5">
+          <p className="font-eyebrow text-[10px] text-white/50 uppercase tracking-[0.15em] font-semibold text-center md:text-left">
             © 2026 Dasa Export. All rights reserved.
           </p>
-          <p className="font-eyebrow text-[10px] text-white/40 uppercase tracking-[0.15em] font-semibold text-center md:text-right">
+          <p className="font-eyebrow text-[10px] text-white/50 uppercase tracking-[0.15em] font-semibold text-center md:text-right">
             Tamil Nadu, India · www.dasaexports.com
           </p>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PRODUCTS } from '../../data/productsData';
 import { PhoneCall, Mail, MapPin, Globe, ArrowUpRight, ShieldCheck } from 'lucide-react';
+import RevealOnScroll from './RevealOnScroll';
 
 export default function ContactSection({ selectedProductName = '' }) {
   const [formData, setFormData] = useState({
@@ -32,6 +33,7 @@ export default function ContactSection({ selectedProductName = '' }) {
 
           {/* Left Column (7 cols): Export Enquiry Form */}
           <div className="md:col-span-7 md:pr-6">
+            <RevealOnScroll delay={0}>
             <h2 className="font-display-lg text-4xl md:text-5xl text-[#0B2B1B] font-serif font-bold mb-4">
               Export Enquiry
             </h2>
@@ -39,7 +41,9 @@ export default function ContactSection({ selectedProductName = '' }) {
               We welcome global partnerships. Share your requirements below and
               our trade specialists will respond within 24 hours.
             </p>
+            </RevealOnScroll>
 
+            <RevealOnScroll delay={100}>
             {submitted ? (
               <div className="bg-[#FAF8F2] p-8 border border-[#0B2B1B]/10 text-center space-y-4">
                 <div className="w-12 h-12 mx-auto rounded-full bg-[#2E7D32]/10 flex items-center justify-center">
@@ -154,10 +158,12 @@ export default function ContactSection({ selectedProductName = '' }) {
                 </div>
               </form>
             )}
+            </RevealOnScroll>
           </div>
 
           {/* Right Column (5 cols): Global Office */}
           <div className="md:col-span-5 md:border-l md:border-[#E5E2D9] md:pl-10 space-y-10">
+            <RevealOnScroll delay={200}>
             <div>
               <h3 className="font-display-lg text-3xl md:text-4xl text-[#0B2B1B] font-serif font-bold mb-8">
                 Global Office
@@ -204,8 +210,10 @@ export default function ContactSection({ selectedProductName = '' }) {
                 </div>
               </div>
             </div>
+            </RevealOnScroll>
 
             {/* Office preview card */}
+            <RevealOnScroll delay={300}>
             <div className="pt-4">
               <div className="border border-[#E5E2D9] overflow-hidden bg-[#FAF8F2] p-5 space-y-3">
                 <div className="flex justify-between items-center border-b border-[#0B2B1B]/10 pb-3">
@@ -225,6 +233,7 @@ export default function ContactSection({ selectedProductName = '' }) {
                 </div>
               </div>
             </div>
+            </RevealOnScroll>
           </div>
 
         </div>

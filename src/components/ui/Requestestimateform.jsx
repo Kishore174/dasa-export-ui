@@ -104,7 +104,7 @@ const RequestEstimateForm = () => {
               style={fieldStyle}
             />
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
                 type="email"
                 placeholder="Email *"
@@ -123,7 +123,7 @@ const RequestEstimateForm = () => {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
                 type="text"
                 placeholder="Country"
@@ -175,18 +175,16 @@ const RequestEstimateForm = () => {
             </button>
           </div>
         )}
-      </div>
 
-      <div
-        className="flex items-center justify-center gap-6 mt-5 font-eyebrow text-[10px] uppercase tracking-wider"
-        style={{ color: "#5A4139" }}
-      >
-        <span className="flex items-center gap-1.5">
-          <Ship size={13} className="text-[#2E7D32]" /> Global shipping
-        </span>
-        <span className="flex items-center gap-1.5">
-          <Clock3 size={13} className="text-[#F15A24]" /> Reply within 24h
-        </span>
+        {/* Floating Info Banner Integrated inside the card */}
+        <div className="mt-6 pt-5 border-t border-[#0B2B1B]/5 flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-eyebrow text-[10px] uppercase tracking-wider text-[#0B2B1B]/70 font-bold">
+          <span className="flex items-center gap-1.5">
+            <Ship size={14} className="text-[#2E7D32]" /> Global shipping
+          </span>
+          <span className="flex flex-col sm:flex-row items-center gap-1.5 text-center sm:text-left">
+            <Clock3 size={14} className="text-[#F15A24]" /> Reply within 24h
+          </span>
+        </div>
       </div>
     </div>
   );

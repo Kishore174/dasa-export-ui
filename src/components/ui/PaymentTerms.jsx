@@ -31,21 +31,28 @@ const PaymentTerms = () => {
   return (
     <div className="font-body bg-[#FAF8F2] min-h-screen text-[#1B1C19]">
       
-      {/* Container wrapper */}
-      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-24">
+      {/* Cinematic Hero Section */}
+      <section className="relative w-full min-h-[45vh] flex flex-col justify-center overflow-hidden bg-black py-20 lg:py-28 border-b border-white/10">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+           <img src="/payment-hero-bg.jpg" className="w-full h-full object-cover object-center opacity-70" alt="Payment Background" />
+           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+        </div>
         
-        {/* Header Section */}
-        <div className="mb-16 max-w-3xl">
-          <span className="font-eyebrow text-eyebrow tracking-widest text-[#A16900] uppercase bg-white border border-[#DFDCD5] px-3 py-1 rounded inline-block mb-6 shadow-2xs font-bold">
+        <div className="max-w-[1440px] w-full mx-auto px-margin-mobile md:px-margin-desktop relative z-10 mt-8">
+          <span className="font-eyebrow text-eyebrow tracking-widest text-white uppercase bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-full inline-block mb-6 shadow-sm font-bold">
             POLICIES
           </span>
-          <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-serif text-[#1B1C19] mb-4">
+          <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-serif text-white mb-4 drop-shadow-xl max-w-3xl">
             International Payment &amp; Shipping Terms
           </h1>
-          <p className="font-body-lg text-body-lg text-[#5A4139] leading-relaxed max-w-2xl">
+          <p className="font-body-lg text-body-lg text-white/90 leading-relaxed max-w-2xl drop-shadow-md">
             We prioritize transparent, secure, and efficient financial transactions to foster long-term partnerships with our global clientele. Review our standard terms designed for international trade.
           </p>
         </div>
+      </section>
+
+      {/* Container wrapper */}
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-24">
 
         {/* Accepted Payment Methods Section */}
         <section className="mb-24">

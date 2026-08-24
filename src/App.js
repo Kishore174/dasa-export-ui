@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import './index.css';
 import Navbar from './components/ui/Navbar';
 import Footer from './components/ui/Footer';
+import FloatingWhatsApp from './components/ui/FloatingWhatsApp';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -10,6 +11,8 @@ import AboutPage from './pages/AboutPage';
 import ProductsPage from './pages/ProductsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CatalogPage from './pages/CatalogPage';
+import CataloguePage from './pages/CataloguePage';
+import CatalogueProductDetailPage from './pages/CatalogueProductDetailPage';
 import CertificatesPage from './pages/CertificatesPage';
 import PaymentTermsPage from './pages/PaymentTermsPage';
 import ContactPage from './pages/ContactPage';
@@ -51,6 +54,8 @@ function App() {
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/products/:slug" element={<ProductDetailPage />} />
             <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/catalogue" element={<CataloguePage />} />
+            <Route path="/catalogue/product/:slug" element={<CatalogueProductDetailPage />} />
             <Route path="/certificates" element={<CertificatesPage />} />
             <Route path="/payment-terms" element={<PaymentTermsPage />} />
             <Route path="/contact" element={<ContactPage />} />
@@ -59,6 +64,9 @@ function App() {
 
         {/* Footer */}
         <Footer />
+        
+        {/* Global Floating WhatsApp */}
+        <FloatingWhatsApp />
       </div>
     </Router>
   );

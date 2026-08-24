@@ -1,4 +1,5 @@
 import React from 'react';
+import RevealOnScroll from './RevealOnScroll';
 
 export default function QualityBand() {
   const certs = [
@@ -29,25 +30,32 @@ export default function QualityBand() {
       <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop text-center">
         
         {/* Eyebrow Label */}
+        <RevealOnScroll delay={0}>
         <span className="font-eyebrow text-[10px] text-[#A16900] uppercase tracking-[0.25em] block mb-2 font-bold">
           QUALITY ASSURANCE
         </span>
+        </RevealOnScroll>
 
         {/* Display Heading */}
+        <RevealOnScroll delay={100}>
         <h2 className="font-display-lg text-3xl md:text-4xl text-white font-serif tracking-tight mb-3">
           Uncompromising Global Standards
         </h2>
+        </RevealOnScroll>
 
         {/* Orange Accent Line */}
+        <RevealOnScroll delay={200}>
         <div className="w-10 h-[2px] bg-[#F15A24] mx-auto mb-8 md:mb-10" />
+        </RevealOnScroll>
 
         {/* 5 Card Tiles Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6 max-w-5xl mx-auto">
-          {certs.map((cert) => (
-            <div key={cert.title} className="flex flex-col items-center group">
+          {certs.map((cert, index) => (
+            <RevealOnScroll key={cert.title} delay={300 + index * 100}>
+            <div className="flex flex-col items-center group">
               {/* Compact Rounded Square Border Card */}
-              <div className="w-full aspect-square bg-[#052b18]/60 border border-[#144229] rounded-xl flex items-center justify-center p-3 mb-2.5 group-hover:border-[#F15A24]/60 group-hover:bg-[#07361f] transition-all duration-300 shadow-inner">
-                <span className="font-display text-xl md:text-2xl font-serif text-white tracking-wide">
+              <div className="w-full aspect-square bg-[#052b18]/60 border border-[#144229] rounded-xl flex items-center justify-center p-3 mb-2.5 group-hover:border-[#F15A24]/60 group-hover:bg-[#07361f] group-hover:scale-105 group-hover:-translate-y-1 transition-all duration-400 ease-out shadow-inner group-hover:shadow-2xl">
+                <span className="font-display text-xl md:text-2xl text-white tracking-wide">
                   {cert.title}
                 </span>
               </div>
@@ -57,6 +65,7 @@ export default function QualityBand() {
                 {cert.subtitle}
               </span>
             </div>
+            </RevealOnScroll>
           ))}
         </div>
 
