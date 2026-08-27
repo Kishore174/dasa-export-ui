@@ -70,7 +70,7 @@ const ExportProcess = () => {
   const IconComponent = current.icon;
 
   return (
-    <section id="process" className="py-24 font-body relative overflow-hidden" style={{ background: "#0A1A0F" }}>
+    <section id="process" className="py-12 md:py-16 font-body relative overflow-hidden" style={{ background: "#0A1A0F" }}>
       {/* Background ambient lighting */}
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[25rem] rounded-full opacity-[0.12] blur-[120px] pointer-events-none"

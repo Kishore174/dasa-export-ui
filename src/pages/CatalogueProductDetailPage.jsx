@@ -39,7 +39,7 @@ export default function CatalogueProductDetailPage() {
   if (!product) return null;
 
   return (
-    <div className="bg-background min-h-screen pt-24 pb-12">
+    <div className="bg-background min-h-screen pt-[120px] md:pt-[140px] pb-12">
       <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
         
         {/* Breadcrumb / Back */}
@@ -54,7 +54,7 @@ export default function CatalogueProductDetailPage() {
         </RevealOnScroll>
 
         {/* Product Top Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-20 lg:mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-12 lg:mb-24">
           
           {/* Product Image */}
           <div className="lg:col-span-6">
@@ -110,11 +110,12 @@ export default function CatalogueProductDetailPage() {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-6 border-t border-outline/10">
                 <Link 
                   to="/contact"
-                  className="group flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-label font-semibold rounded-lg hover:bg-on-surface transition-all duration-300 shadow-md hover:shadow-lg"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-4 bg-primary text-white font-label font-semibold rounded-lg hover:bg-on-surface transition-all duration-300 shadow-md hover:shadow-lg"
                 >
                   <Send size={18} />
                   Send Enquiry
                 </Link>
+                {/* 
                 <a 
                   href="/products/catalog-banner.jpg"
                   download="Dasa_Exports_Catalogue.pdf"
@@ -123,6 +124,7 @@ export default function CatalogueProductDetailPage() {
                   <FileText size={18} />
                   Download Catalogue
                 </a>
+                */}
               </div>
             </RevealOnScroll>
           </div>
@@ -130,7 +132,7 @@ export default function CatalogueProductDetailPage() {
 
         {/* Detailed Information Tabs / Sections */}
         <RevealOnScroll>
-          <div className="border-t border-outline/10 pt-16 mb-20 lg:mb-24 grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
+          <div className="border-t border-outline/10 pt-16 mb-12 lg:mb-24 grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
             <div className="col-span-1 md:col-span-2 space-y-8 lg:space-y-12">
               <div>
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-on-surface mb-6">

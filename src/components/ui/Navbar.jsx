@@ -35,13 +35,21 @@ export default function Navbar({ onOpenQuoteModal }) {
     }
   };
 
+  // Determine if the current page has a dark hero image at the top
+  const hasDarkHero = ['/', '/catalogue', '/contact', '/about', '/certificates', '/products', '/payment-terms'].includes(location.pathname);
+  
+  // The navbar is transparent ONLY if it's a dark hero page AND we haven't scrolled
+  const isTransparent = hasDarkHero && !scrolled;
+
   return (
-    <header className={`w-full sticky top-0 z-50 transition-all duration-500 ease-out ${
-      scrolled ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-white shadow-sm'
+    <header className={`w-full fixed top-0 z-50 transition-all duration-500 ease-in-out ${
+      isTransparent ? 'bg-transparent' : 'bg-white shadow-md'
     }`}>
       
       {/* Top Contact Bar — Desktop/Tablet Only (Hidden on Mobile) */}
-      <div className="hidden sm:block bg-[#021c10] text-white text-[11px] py-1.5 px-margin-mobile md:px-margin-desktop border-b border-white/5">
+      <div className={`hidden sm:block text-[11px] py-1.5 px-margin-mobile md:px-margin-desktop border-b transition-colors duration-500 ${
+        isTransparent ? 'bg-transparent text-white/90 border-white/20' : 'bg-[#021c10] text-white border-transparent'
+      }`}>
         <div className="max-w-[1440px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-4 font-eyebrow tracking-wider text-center sm:text-left">
           
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-6">
@@ -64,11 +72,13 @@ export default function Navbar({ onOpenQuoteModal }) {
       </div>
 
       {/* Main Navigation Bar */}
-      <nav className="w-full bg-white/95 backdrop-blur-md">
+      <nav className={`w-full transition-colors duration-500 ${isTransparent ? 'bg-transparent' : 'bg-white/95 backdrop-blur-md'}`}>
         <div className="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-[1440px] mx-auto">
 
           {/* Brand Logo */}
-          <Link className="font-headline-md text-2xl md:text-3xl text-[#0B2B1B] hover:text-[#F15A24] transition-colors font-serif font-bold" to="/">
+          <Link className={`font-headline-md text-2xl md:text-3xl transition-colors font-serif font-bold ${
+            isTransparent ? 'text-white hover:text-white/80' : 'text-[#0B2B1B] hover:text-[#F15A24]'
+          }`} to="/">
             Dasa Export<span className="text-[#F15A24]">.</span>
           </Link>
 
@@ -82,8 +92,8 @@ export default function Navbar({ onOpenQuoteModal }) {
                   to={link.path}
                   className={`relative font-eyebrow text-eyebrow tracking-widest uppercase transition-colors pb-1 group ${
                     isActive
-                      ? 'text-[#F15A24] font-bold'
-                      : 'text-[#0B2B1B]/70 hover:text-[#F15A24]'
+                      ? (isTransparent ? 'text-[#F15A24] font-bold' : 'text-[#F15A24] font-bold')
+                      : (isTransparent ? 'text-white hover:text-[#F15A24]' : 'text-[#0B2B1B]/70 hover:text-[#F15A24]')
                   }`}
                 >
                   {link.name}
@@ -101,7 +111,7 @@ export default function Navbar({ onOpenQuoteModal }) {
           {/* Request Quote CTA Button */}
           <button
             onClick={handleQuoteClick}
-            className="hidden md:inline-flex items-center justify-center px-6 py-3 bg-[#F15A24] text-white font-label-md text-label-md hover:bg-[#0B2B1B] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 rounded"
+            className="hidden md:inline-flex items-center justify-center px-6 py-3 bg-[#F15A24] text-white font-label-md text-label-md hover:bg-[#D1430A] shadow-md hover:shadow-lg transition-all duration-300 rounded"
           >
             Request Quote
           </button>
@@ -109,7 +119,7 @@ export default function Navbar({ onOpenQuoteModal }) {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-[#0B2B1B] p-1"
+            className={`md:hidden p-1 transition-colors ${isTransparent ? 'text-white' : 'text-[#0B2B1B]'}`}
             aria-label="Toggle Menu"
             aria-expanded={mobileMenuOpen}
           >
@@ -120,7 +130,7 @@ export default function Navbar({ onOpenQuoteModal }) {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-b border-[#0B2B1B]/10 px-margin-mobile py-4 space-y-3">
+          <div className="md:hidden bg-white border-b border-[#0B2B1B]/10 px-margin-mobile py-4 space-y-3 shadow-xl">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
@@ -141,7 +151,7 @@ export default function Navbar({ onOpenQuoteModal }) {
                 setMobileMenuOpen(false);
                 handleQuoteClick();
               }}
-              className="w-full mt-2 px-6 py-3 bg-[#F15A24] text-white font-label-md text-label-md text-center hover:bg-[#0B2B1B] transition-colors duration-200"
+              className="w-full mt-2 px-6 py-3 bg-[#F15A24] text-white font-label-md text-label-md text-center hover:bg-[#D1430A] transition-colors duration-200"
             >
               Request Quote
             </button>

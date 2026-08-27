@@ -86,7 +86,7 @@ export default function PortfolioShowcase() {
                   }}
                 />
               </div>
-              <span className="font-eyebrow text-eyebrow text-on-surface-variant block mb-1">Superfoods</span>
+              <span className="font-eyebrow text-eyebrow text-on-surface-variant block mb-1">Leaf Powders</span>
               <h4 className="font-body-lg text-body-lg text-on-background font-medium group-hover:text-primary transition-colors">Moringa</h4>
             </Link>
             </RevealOnScroll>

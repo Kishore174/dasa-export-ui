@@ -23,28 +23,31 @@ export default function CataloguePage() {
   return (
     <div className="bg-background min-h-screen">
       {/* CATALOGUE HERO */}
-      <section className="relative w-full min-h-[50vh] flex flex-col justify-center overflow-hidden bg-black py-20 lg:py-32 border-b border-white/10">
-        {/* Cinematic Background Image */}
+      <section className="relative w-full min-h-[50vh] flex flex-col justify-center overflow-hidden bg-[#0B2B1B] py-12 md:py-16">
+        {/* Premium Photographic Background Image with Smart Cinematic Overlay */}
         <div className="absolute inset-0 z-0 pointer-events-none">
-           <img src="/products/catalog-banner.jpg" className="w-full h-full object-cover object-center opacity-85" alt="Catalogue Background" />
-           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 mix-blend-multiply" />
-           <div className="absolute inset-0 bg-black/20" />
+           <img src="/products/catalog-unsplash-1.jpg" className="w-full h-full object-cover object-center" alt="Catalogue Background" />
+           {/* Smart radial gradient to make centered text readable while keeping image edges bright and clear */}
+           <div 
+             className="absolute inset-0" 
+             style={{ background: "radial-gradient(circle at center, rgba(11,43,27,0.9) 0%, rgba(11,43,27,0.5) 45%, transparent 100%)" }}
+           />
         </div>
         
         <div className="max-w-[1440px] w-full mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center mt-10">
           <RevealOnScroll delay={0}>
-            <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 border border-white/20 text-white font-eyebrow text-[11px] font-bold tracking-[0.25em] uppercase mb-6 shadow-sm backdrop-blur-md">
+            <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 border border-white/20 text-white font-eyebrow text-[11px] font-bold tracking-[0.25em] uppercase mb-6 shadow-md backdrop-blur-md">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               Dasa Exports
             </span>
           </RevealOnScroll>
           <RevealOnScroll delay={100}>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 max-w-4xl mx-auto leading-tight drop-shadow-xl">
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 max-w-4xl mx-auto leading-tight drop-shadow-2xl">
               Our Premium Export Catalogue
             </h1>
           </RevealOnScroll>
           <RevealOnScroll delay={200}>
-            <p className="font-body-lg text-white/90 max-w-2xl mx-auto mb-10 text-lg drop-shadow-md">
+            <p className="font-body-lg text-white/95 font-medium max-w-2xl mx-auto mb-10 text-lg drop-shadow-lg">
               Explore our carefully selected range of premium-quality products prepared to meet international export standards.
             </p>
           </RevealOnScroll>
@@ -71,7 +74,7 @@ export default function CataloguePage() {
       </section>
 
       {/* CATEGORY FILTER */}
-      <section className="py-8 md:py-12 border-b border-outline/10 sticky top-[72px] z-30 bg-white/90 backdrop-blur-md">
+      <section className="py-4 md:py-6 sticky top-[72px] z-30 bg-white/95 backdrop-blur-md">
         <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="flex overflow-x-auto hide-scrollbar gap-2 md:gap-4 pb-2 md:pb-0 justify-start md:justify-center">
             {allCategories.map((cat) => (
@@ -93,10 +96,10 @@ export default function CataloguePage() {
 
       {/* FEATURED PRODUCTS */}
       {activeCategory === 'All' && (
-        <section className="py-20 lg:py-28 bg-surface">
+        <section className="py-12 lg:py-16 bg-surface">
           <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
             <RevealOnScroll>
-              <div className="mb-12 md:mb-16">
+              <div className="mb-8 md:mb-12">
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-on-surface mb-4">
                   Featured Products
                 </h2>
@@ -118,10 +121,10 @@ export default function CataloguePage() {
       )}
 
       {/* ALL PRODUCTS GRID */}
-      <section id="catalogue-grid" className={`py-20 lg:py-28 ${activeCategory === 'All' ? 'bg-surface-container-low' : 'bg-surface'}`}>
+      <section id="catalogue-grid" className={`py-12 lg:py-16 ${activeCategory === 'All' ? 'bg-surface-container-low' : 'bg-surface'}`}>
         <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
           <RevealOnScroll>
-            <div className="mb-12 md:mb-16">
+            <div className="mb-8 md:mb-12">
               <h2 className="font-display text-3xl md:text-4xl font-bold text-on-surface mb-4">
                 {activeCategory === 'All' ? 'Our Products' : `${activeCategory} Products`}
               </h2>
@@ -139,7 +142,7 @@ export default function CataloguePage() {
             ))}
             
             {filteredProducts.length === 0 && (
-              <div className="col-span-full py-20 text-center">
+              <div className="col-span-full py-12 md:py-16 text-center">
                 <p className="text-on-surface-variant text-lg">No products found for this category.</p>
               </div>
             )}
@@ -148,7 +151,7 @@ export default function CataloguePage() {
       </section>
 
       {/* WHY CHOOSE DASA EXPORTS */}
-      <section className="py-20 lg:py-28 bg-white border-t border-outline/10">
+      <section className="py-12 md:py-16 bg-white border-t border-outline/10">
         <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
           <RevealOnScroll>
             <div className="text-center mb-12 md:mb-16">
@@ -183,7 +186,7 @@ export default function CataloguePage() {
       </section>
 
       {/* QUALITY / EXPORT STANDARDS SECTION */}
-      <section className="py-20 lg:py-28 bg-secondary text-white relative overflow-hidden">
+      <section className="py-12 md:py-16 bg-secondary text-white relative overflow-hidden">
          {/* Background Image / Overlay */}
         <div className="absolute inset-0 z-0">
           <img src="/products/turmeric.jpg" alt="Quality Standards" className="w-full h-full object-cover opacity-20" />
@@ -231,7 +234,7 @@ export default function CataloguePage() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-20 lg:py-28 bg-surface-container text-center relative overflow-hidden">
+      <section className="py-12 md:py-16 bg-surface-container text-center relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl opacity-5 pointer-events-none">
            <div className="absolute top-10 left-10 w-64 h-64 bg-primary rounded-full mix-blend-multiply filter blur-3xl"></div>

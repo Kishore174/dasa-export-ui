@@ -6,7 +6,7 @@ import RequestEstimateForm from './Requestestimateform';
 const heroSlides = [
   {
     id: 1,
-    image: "/hero/tomato-hero.jpg",
+    image: "/hero/tomato-hero.png",
     eyebrow: "GLOBAL AGRICULTURAL EXPORTS",
     title: "Nature's Finest Ingredients,",
     highlight: "Delivered Worldwide.",
@@ -18,7 +18,7 @@ const heroSlides = [
   },
   {
     id: 2,
-    image: "/hero/turmeric-hero.jpg",
+    image: "/hero/turmeric-hero.png",
     eyebrow: "HIGH CURCUMIN SPICES",
     title: "Pure Alleppey Turmeric,",
     highlight: "Packed with Bio-Active Potency.",
@@ -30,7 +30,7 @@ const heroSlides = [
   },
   {
     id: 3,
-    image: "/hero/moringa-hero.jpg",
+    image: "/hero/moringa-hero.png",
     eyebrow: "ORGANIC SUPERFOOD BOTANICALS",
     title: "Organic Moringa Leaf,",
     highlight: "Soil-to-Port Traceability.",
@@ -42,7 +42,7 @@ const heroSlides = [
   },
   {
     id: 4,
-    image: "/hero/millet-hero.jpg",
+    image: "/hero/millet-hero.png",
     eyebrow: "ANCIENT SUPER-GRAINS",
     title: "Organic Indian Millets,",
     highlight: "100% Gluten-Free Powerhouse.",
@@ -51,6 +51,18 @@ const heroSlides = [
     statValue: "12+ Millet Grains",
     lot: "MIL-2026-D4",
     grade: "100% GLUTEN FREE",
+  },
+  {
+    id: 5,
+    image: "/hero/fruit-powder-hero.png",
+    eyebrow: "PREMIUM FRUIT POWDERS",
+    title: "Vibrant Fruit Powders,",
+    highlight: "100% Natural Essence.",
+    description: "Spray-dried natural fruit powders retaining authentic flavor, color, and nutritional value. Perfect for beverages, confectionery, and modern food applications.",
+    statLabel: "SOLUBILITY",
+    statValue: "100% Water Soluble",
+    lot: "FRT-2026-E5",
+    grade: "PREMIUM GRADE",
   },
 ];
 
@@ -153,9 +165,9 @@ export default function Hero() {
         .animate-slideLeft { animation: slideLeft 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes sealSpin { to { transform: rotate(360deg); } }
         .seal-ring { animation: sealSpin 22s linear infinite; }
-        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         .marquee-track { animation: marquee 28s linear infinite; }
         .marquee-track:hover { animation-play-state: paused; }
+        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
         @media (prefers-reduced-motion: reduce) {
           .slide-up-anim, .seal-ring, .marquee-track { animation: none !important; opacity: 1 !important; transform: none !important; }
         }
@@ -169,11 +181,14 @@ export default function Hero() {
 
             {/* Eyebrow */}
             <div className="slide-up-anim [animation-delay:100ms]">
-              <div className="inline-flex items-center gap-2 border border-white/20 px-4 py-1.5 bg-black/40 backdrop-blur-md rounded-full mb-5 shadow-lg">
-                <Sparkles size={13} className="text-[#F15A24]" />
-                <span className="font-eyebrow text-[10px] sm:text-[11px] text-white tracking-[0.25em] uppercase font-bold">
+              <div className="inline-flex items-center gap-3 border border-white/20 px-5 py-2 bg-gradient-to-r from-black/60 to-black/20 backdrop-blur-xl rounded-full mb-6 shadow-2xl relative overflow-hidden">
+                {/* Glowing Corporate Indicator */}
+                <div className="w-1.5 h-1.5 rounded-full bg-[#F4A62A] shadow-[0_0_10px_2px_rgba(244,166,42,0.8)] relative z-10" />
+                <span className="font-eyebrow text-[10px] sm:text-[11px] text-white tracking-[0.3em] uppercase font-bold relative z-10">
                   {slide.eyebrow}
                 </span>
+                {/* Subtle Shimmer Sweep */}
+                <div className="absolute inset-0 w-[200%] bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-[shimmer_3.5s_infinite_linear]" />
               </div>
             </div>
 
@@ -210,8 +225,7 @@ export default function Hero() {
                 to="/catalog"
                 className="group flex items-center justify-center gap-2.5 px-8 py-4 bg-black/20 backdrop-blur-md border border-white/20 text-white font-eyebrow text-xs tracking-[0.15em] font-bold uppercase rounded-lg hover:bg-white hover:text-[#0B2B1B] transition-all duration-300 shadow-md w-full sm:w-auto"
               >
-                <Download size={16} className="transition-transform duration-300 group-hover:-translate-y-0.5" />
-                <span>Catalog PDF</span>
+                <span>View Catalog</span>
               </Link>
             </div>
 

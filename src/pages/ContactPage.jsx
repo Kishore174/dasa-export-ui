@@ -4,29 +4,22 @@ import { MessageSquare } from "lucide-react";
 
 const ContactPage = () => {
   return (
-    <div className="pt-[72px] font-body bg-white min-h-screen">
+    <div className="font-body bg-white min-h-screen">
       {/* Page Header */}
       <section className="relative py-28 bg-[#0A1A0F] text-white overflow-hidden">
-        {/* AI Generated Background Image */}
+        {/* Bright Premium Photographic Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/contact-hero-bg.jpg"
-            alt="International Export Headquarters Office"
-            className="w-full h-full object-cover object-center scale-105"
-            style={{ filter: "brightness(0.7) contrast(1.1)" }}
+            src="/products/contact-premium-new.jpg"
+            alt="Dasa Exports Headquarters"
+            className="w-full h-full object-cover object-center"
           />
+          {/* Clean left-to-right gradient to make text readable while keeping image bright and clear */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(135deg, rgba(10,26,15,0.94) 0%, rgba(15,35,22,0.85) 50%, rgba(10,26,15,0.92) 100%)",
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(circle at 50% 50%, rgba(176,138,62,0.15) 0%, transparent 60%)",
+                "linear-gradient(to right, rgba(10,26,15,0.95) 0%, rgba(10,26,15,0.7) 45%, transparent 100%)",
             }}
           />
         </div>

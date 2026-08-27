@@ -119,30 +119,31 @@ const timelineSteps = [
 
 const PaymentTerms = () => {
   return (
-    <div className="font-body bg-[#FAF8F2] min-h-screen text-[#1B1C19]">
+    <div className="font-body bg-white min-h-screen text-[#1B1C19]">
       
       {/* Cinematic Hero Section */}
-      <section className="relative w-full min-h-[45vh] flex flex-col justify-center overflow-hidden bg-black py-20 lg:py-28 border-b border-white/10">
+      <section className="relative w-full min-h-[50vh] flex flex-col justify-center overflow-hidden bg-[#0B2B1B] py-12 md:py-16 border-b border-[#DFDCD5]">
         <div className="absolute inset-0 z-0 pointer-events-none">
-           <img src="/payment-hero-bg.jpg" className="w-full h-full object-cover object-center opacity-70" alt="Payment Background" />
-           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+           <img src="/payment-premium-hero.png" className="w-full h-full object-cover object-center" alt="Payment Background" />
         </div>
         
         <div className="max-w-[1440px] w-full mx-auto px-margin-mobile md:px-margin-desktop relative z-10 mt-8">
-          <span className="font-eyebrow text-eyebrow tracking-widest text-white uppercase bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-full inline-block mb-6 shadow-sm font-bold">
-            POLICIES
-          </span>
-          <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-serif text-white mb-4 drop-shadow-xl max-w-3xl">
-            International Payment &amp; Shipping Terms
-          </h1>
-          <p className="font-body-lg text-body-lg text-white/90 leading-relaxed max-w-2xl drop-shadow-md">
-            We prioritize transparent, secure, and efficient financial transactions to foster long-term partnerships with our global clientele. Review our standard terms designed for international trade.
-          </p>
+          <div className="max-w-3xl">
+            <span className="font-eyebrow text-eyebrow tracking-widest text-white uppercase bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full inline-block mb-6 font-bold shadow-sm">
+              POLICIES
+            </span>
+            <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-serif text-white mb-5 leading-tight drop-shadow-2xl">
+              International Payment &amp; Shipping Terms
+            </h1>
+            <p className="font-body-lg text-body-lg text-white/95 leading-relaxed drop-shadow-lg font-medium">
+              We prioritize transparent, secure, and efficient financial transactions to foster long-term partnerships with our global clientele. Review our standard terms designed for international trade.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Container wrapper */}
-      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-24">
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-12 md:py-16">
 
         {/* Accepted Payment Methods Section */}
         <section className="mb-24">
@@ -183,7 +184,7 @@ const PaymentTerms = () => {
         </section>
 
         {/* Standard Order Timeline Section */}
-        <section className="mb-20">
+        <section className="mb-12">
           <h2 className="font-headline-md text-headline-md font-serif text-[#1B1C19] mb-16">
             Standard Order Timeline
           </h2>
@@ -252,7 +253,7 @@ const PaymentTerms = () => {
               return (
                 <div
                   key={idx}
-                  className="group relative bg-white border border-[#DFDCD5]/85 rounded-2xl p-6 hover:shadow-xl hover:border-[#F15A24]/60 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                  className="group relative bg-[#FAF8F2] border border-[#DFDCD5]/85 rounded-2xl p-6 hover:shadow-xl hover:border-[#F15A24]/60 transition-all duration-300 flex flex-col justify-between overflow-hidden"
                 >
                   {/* Hover Accent Top Bar */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#F15A24] to-[#D1430A] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -260,10 +261,10 @@ const PaymentTerms = () => {
                   <div>
                     {/* Header Row: Icon & Badge */}
                     <div className="flex items-center justify-between mb-5">
-                      <div className="w-12 h-12 rounded-xl bg-[#FAF8F2] border border-[#DFDCD5] text-[#F15A24] flex items-center justify-center group-hover:bg-[#F15A24] group-hover:text-white transition-colors duration-300 shadow-2xs">
+                      <div className="w-12 h-12 rounded-xl bg-white border border-[#DFDCD5] text-[#F15A24] flex items-center justify-center group-hover:bg-[#F15A24] group-hover:text-white transition-colors duration-300 shadow-sm">
                         <Icon size={22} />
                       </div>
-                      <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#5A4139] bg-[#FAF8F2] border border-[#DFDCD5]/70 px-2.5 py-1 rounded-full">
+                      <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#5A4139] bg-white border border-[#DFDCD5]/70 px-2.5 py-1 rounded-full">
                         {item.badge}
                       </span>
                     </div>

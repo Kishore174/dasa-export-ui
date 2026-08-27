@@ -12,25 +12,24 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative w-full text-white overflow-hidden bg-[#12281D]">
-      {/* Premium Cinematic Background — Lighter, Vibrant & Professional */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <img src="/contact-hero-bg.jpg" className="w-full h-full object-cover object-center opacity-65 mix-blend-luminosity" alt="Premium Export Background" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#163325]/90 via-[#10271C]/85 to-[#0B1C14]/95" />
-        {/* Warm Ambient Radial Glows */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#F15A24]/15 blur-[120px] rounded-full" />
-        <div className="absolute bottom-0 right-0 w-2/3 h-full bg-[#F4A62A]/15 blur-[140px] rounded-full" />
+    <footer className="relative w-full text-white overflow-hidden bg-[#1B1C19]">
+      {/* Premium Footer Texture & Ambient Glows */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <img src="/footer-premium-bg.png" className="w-full h-full object-cover object-center opacity-60" alt="Footer Background Texture" />
+        
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#F15A24]/5 blur-[120px] rounded-full" />
+        <div className="absolute bottom-0 right-0 w-2/3 h-full bg-[#F4A62A]/5 blur-[140px] rounded-full" />
       </div>
 
       {/* Signature statement band */}
-      <div className="relative z-10 border-b border-white/15 bg-white/5 backdrop-blur-md">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 px-margin-mobile md:px-margin-desktop w-full max-w-[1440px] mx-auto py-12 md:py-16">
+      <div className="relative z-10 border-b border-white/10 bg-white/5">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 px-margin-mobile md:px-margin-desktop w-full max-w-[1440px] mx-auto py-8 md:py-10">
           <div>
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#F4A62A]/40 bg-[#F4A62A]/15 text-xs uppercase tracking-[0.2em] text-[#F4A62A] font-bold mb-4 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-[#F4A62A] animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F15A24]/10 text-[10px] uppercase tracking-[0.15em] text-[#F15A24] font-bold mb-3 shadow-sm border border-[#F15A24]/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#F15A24] animate-pulse" />
               Global Supply Partner
             </span>
-            <h3 className="font-display-lg font-serif font-bold text-white text-3xl md:text-5xl leading-tight max-w-xl drop-shadow-lg">
+            <h3 className="font-display-lg font-serif font-bold text-white text-2xl md:text-3xl leading-tight max-w-xl">
               Nature's Finest Ingredients,
               <br className="hidden md:block" />
               Delivered Worldwide.
@@ -38,11 +37,11 @@ export default function Footer() {
           </div>
           <Link
             to="/contact"
-            className="group shrink-0 inline-flex items-center gap-3 font-eyebrow text-xs uppercase tracking-[0.18em] font-bold text-white bg-[#F15A24] px-8 py-4.5 rounded-lg hover:bg-white hover:text-[#12281D] shadow-xl hover:shadow-[0_0_30px_rgba(241,90,36,0.5)] transition-all duration-300 ease-out"
+            className="group shrink-0 inline-flex items-center gap-2 font-eyebrow text-[11px] uppercase tracking-[0.15em] font-bold text-white bg-[#F15A24] px-6 py-3.5 rounded-lg hover:bg-white hover:text-[#1B1C19] shadow-lg transition-all duration-300 ease-out"
           >
             Start an Export Enquiry
             <ArrowUpRight
-              size={18}
+              size={16}
               className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
             />
           </Link>
@@ -50,7 +49,7 @@ export default function Footer() {
       </div>
 
       {/* Main columns */}
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 px-margin-mobile md:px-margin-desktop w-full max-w-[1440px] mx-auto py-12 md:py-16">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 px-margin-mobile md:px-margin-desktop w-full max-w-[1440px] mx-auto py-10 md:py-12">
 
         {/* Brand */}
         <div className="md:col-span-4 flex flex-col justify-between">

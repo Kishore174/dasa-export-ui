@@ -16,8 +16,8 @@ export const CATEGORIES = [
     count: '15+ Varieties'
   },
   {
-    id: 'superfoods',
-    name: 'Superfoods',
+    id: 'leaf-powders',
+    name: 'leaf-powders',
     shortDesc: 'Nutrient-dense organic herbal powders harvested at peak maturity and cold-milled under strict export standards.',
     mainImage: '/products/moringa.jpg',
     products: ['Organic Moringa Powder', 'Curry Leaf Powder', 'Mint Leaf Powder'],
@@ -55,7 +55,13 @@ export const PRODUCTS = [
       'Moisture': 'Max 8.0%',
       'Gluten Content': '0% (Gluten-Free Certified)',
       'Mesh Size': '80 - 100 Fine Mesh'
-    }
+    },
+    gallery: [
+      '/products/millet.jpg',
+      '/products/gallery/millet-products-1.jpg',
+      '/products/gallery/millet-products-2.jpg',
+      '/products/gallery/millet-products-3.jpg'
+    ]
   },
   {
     id: 'ragi-millet',
@@ -70,7 +76,13 @@ export const PRODUCTS = [
       'Moisture': 'Max 7.5%',
       'Purity': '99.8% Cleaned',
       'Mesh Size': '80 - 100 Mesh'
-    }
+    },
+    gallery: [
+      '/products/ragi-millet.jpg',
+      '/products/gallery/ragi-millet-1.jpg',
+      '/products/gallery/ragi-millet-2.jpg',
+      '/products/gallery/ragi-millet-3.jpg'
+    ]
   },
   {
     id: 'foxtail-millet',
@@ -85,7 +97,13 @@ export const PRODUCTS = [
       'Moisture': 'Max 8.0%',
       'Gluten Content': '0%',
       'Mesh Size': '80 Mesh'
-    }
+    },
+    gallery: [
+      '/products/foxtail-millet.jpg',
+      '/products/gallery/foxtail-millet-1.jpg',
+      '/products/gallery/foxtail-millet-2.jpg',
+      '/products/gallery/foxtail-millet-3.jpg'
+    ]
   },
   {
     id: 'bajra-millet',
@@ -100,7 +118,13 @@ export const PRODUCTS = [
       'Moisture': 'Max 8.0%',
       'Mesh Size': '80 Mesh',
       'Purity': '99.5%'
-    }
+    },
+    gallery: [
+      '/products/bajra-millet.jpg',
+      '/products/gallery/bajra-millet-1.jpg',
+      '/products/gallery/bajra-millet-2.jpg',
+      '/products/gallery/bajra-millet-3.jpg'
+    ]
   },
   {
     id: 'jowar-millet',
@@ -115,7 +139,13 @@ export const PRODUCTS = [
       'Moisture': 'Max 7.5%',
       'Gluten Content': '0%',
       'Mesh Size': '80 - 100 Mesh'
-    }
+    },
+    gallery: [
+      '/products/jowar-millet.jpg',
+      '/products/gallery/jowar-millet-1.jpg',
+      '/products/gallery/jowar-millet-2.jpg',
+      '/products/gallery/jowar-millet-3.jpg'
+    ]
   },
   {
     id: 'tomato-powder',
@@ -129,13 +159,19 @@ export const PRODUCTS = [
       'Solubility': '98.5% Dispersible',
       'Moisture': 'Max 4.5%',
       'pH Value': '4.0 - 4.5'
-    }
+    },
+    gallery: [
+      '/products/tomato.jpg',
+      '/products/gallery/tomato-powder-1.jpg',
+      '/products/gallery/tomato-powder-2.jpg',
+      '/products/gallery/tomato-powder-3.jpg'
+    ]
   },
   {
     id: 'moringa-powder',
     slug: 'moringa-powder',
     name: 'Moringa',
-    category: 'Superfoods',
+    category: 'leaf-powders',
     image: '/products/moringa.jpg',
     origin: 'Tamil Nadu, India',
     description: 'Nutrient-dense organic moringa leaf powder harvested at peak maturity and processed under ultra-hygienic cold-milling standards.',
@@ -143,7 +179,13 @@ export const PRODUCTS = [
       'Protein Content': '> 27%',
       'Mesh Size': '100 Mesh Fine',
       'Moisture': 'Max 6.0%'
-    }
+    },
+    gallery: [
+      '/products/moringa.jpg',
+      '/products/gallery/moringa-powder-1.jpg',
+      '/products/gallery/moringa-powder-2.jpg',
+      '/products/gallery/moringa-powder-3.jpg'
+    ]
   },
   {
     id: 'turmeric-powder',
@@ -156,7 +198,13 @@ export const PRODUCTS = [
     specs: {
       'Curcumin Content': '5.2% to 5.8%',
       'Mesh Size': '80 - 100 Mesh'
-    }
+    },
+    gallery: [
+      '/products/turmeric.jpg',
+      '/products/gallery/turmeric-powder-1.jpg',
+      '/products/gallery/turmeric-powder-2.jpg',
+      '/products/gallery/turmeric-powder-3.jpg'
+    ]
   },
   {
     id: 'beetroot-powder',
@@ -169,7 +217,13 @@ export const PRODUCTS = [
     specs: {
       'Moisture': 'Max 5.0%',
       'Mesh Size': '80 Mesh'
-    }
+    },
+    gallery: [
+      '/products/beetroot.jpg',
+      '/products/gallery/beetroot-powder-1.jpg',
+      '/products/gallery/beetroot-powder-2.jpg',
+      '/products/gallery/beetroot-powder-3.jpg'
+    ]
   },
   {
     id: 'onion-powder',
@@ -182,7 +236,13 @@ export const PRODUCTS = [
     specs: {
       'Moisture': 'Max 5.0%',
       'Particle Size': '80 - 100 Mesh'
-    }
+    },
+    gallery: [
+      '/products/onion.jpg',
+      '/products/gallery/onion-powder-1.jpg',
+      '/products/gallery/onion-powder-2.jpg',
+      '/products/gallery/onion-powder-3.jpg'
+    ]
   },
   {
     id: 'garlic-powder',
@@ -195,7 +255,13 @@ export const PRODUCTS = [
     specs: {
       'Allicin Content': '> 1.2%',
       'Moisture': 'Max 6.0%'
-    }
+    },
+    gallery: [
+      '/products/garlic.jpg',
+      '/products/gallery/garlic-powder-1.jpg',
+      '/products/gallery/garlic-powder-2.jpg',
+      '/products/gallery/garlic-powder-3.jpg'
+    ]
   }
 ];
 

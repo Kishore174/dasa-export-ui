@@ -49,7 +49,7 @@ const products = [
 
 const Products = () => {
   return (
-    <section id="catalog" className="py-24 font-body" style={{ background: "var(--ivory)" }}>
+    <section id="catalog" className="py-12 md:py-16 font-body" style={{ background: "var(--ivory)" }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
         <div className="max-w-2xl">

@@ -40,7 +40,7 @@ const certificatesData = [
     subtitle: "Official Registration & Trade Certificate for Agricultural Food Export",
     issuer: "Directorate General of Foreign Trade & Export Authority",
     entity: "DASA EXPORTS & IMPORTS",
-    kindOfBusiness: "Agricultural Food Powders, Spices & Superfoods Export",
+    kindOfBusiness: "Agricultural Food Powders, Spices & Leaf Powders Export",
     validity: "Active Export License",
     address: "18/2A, Bangalore Road, Konavattam, Vellore, Tamil Nadu - 632013",
     pages: "Official PDF Document",
@@ -55,30 +55,42 @@ export default function CertificatesPage() {
   }, []);
 
   return (
-    <div className="font-body bg-[#FAF8F2] min-h-screen text-[#172019] pb-24 pt-16">
+    <div className="font-body bg-background min-h-screen text-[#172019] pb-12 md:pb-16">
       
-      {/* Header Banner */}
-      <section className="text-center max-w-4xl mx-auto mb-16 px-margin-mobile pt-8">
-        <RevealOnScroll>
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2E7D32]/10 border border-[#2E7D32]/25 text-[11px] text-[#2E7D32] font-bold rounded-full mb-5 tracking-[0.2em] uppercase shadow-2xs">
-            <ShieldCheck size={14} className="text-[#2E7D32]" />
-            GOVERNMENT REGISTERED &amp; STATUTORY COMPLIANT EXPORTER
-          </div>
-        </RevealOnScroll>
-        <RevealOnScroll delay={100}>
-          <h1 className="font-display-lg text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#0B2B1B] mb-5 tracking-tight">
-            Official Statutory Certifications
-          </h1>
-        </RevealOnScroll>
-        <RevealOnScroll delay={200}>
-          <p className="font-body-lg text-base md:text-lg text-[#5A4139] max-w-2xl mx-auto leading-relaxed">
-            DASA EXPORTS &amp; IMPORTS operates under strict statutory mandates from the Government of India, FSSAI Central Licensing, and APEDA agricultural export protocols.
-          </p>
-        </RevealOnScroll>
+      {/* CERTIFICATES HERO */}
+      <section className="relative w-full min-h-[50vh] flex flex-col justify-center overflow-hidden bg-[#0B2B1B] py-12 md:py-16">
+        {/* Premium Photographic Background Image with Smart Cinematic Overlay */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+           <img src="/certificates/hero-bg-2.jpg" className="w-full h-full object-cover object-center" alt="Certificates Background" />
+           {/* Smart radial gradient to make centered text readable while keeping image edges bright and clear */}
+           <div 
+             className="absolute inset-0" 
+             style={{ background: "radial-gradient(circle at center, rgba(11,43,27,0.9) 0%, rgba(11,43,27,0.6) 50%, rgba(11,43,27,0.4) 100%)" }}
+           />
+        </div>
+        
+        <div className="max-w-[1440px] w-full mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center mt-10">
+          <RevealOnScroll delay={0}>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 border border-white/20 text-[11px] text-white font-bold rounded-full mb-6 tracking-[0.2em] uppercase shadow-md backdrop-blur-md">
+              <ShieldCheck size={14} className="text-white" />
+              GOVERNMENT REGISTERED &amp; STATUTORY COMPLIANT EXPORTER
+            </div>
+          </RevealOnScroll>
+          <RevealOnScroll delay={100}>
+            <h1 className="font-display-lg text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-white mb-6 tracking-tight drop-shadow-xl">
+              Official Statutory <br/> Certifications
+            </h1>
+          </RevealOnScroll>
+          <RevealOnScroll delay={200}>
+            <p className="font-body-lg text-base md:text-lg text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+              DASA EXPORTS &amp; IMPORTS operates under strict statutory mandates from the Government of India, FSSAI Central Licensing, and APEDA agricultural export protocols.
+            </p>
+          </RevealOnScroll>
+        </div>
       </section>
 
       {/* Official Certificates Grid — Exactly the 3 Uploaded Asset PDFs */}
-      <section className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <section className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop pt-12 md:pt-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
           {certificatesData.map((cert, idx) => (
             <RevealOnScroll key={cert.id} delay={idx * 100}>
@@ -208,7 +220,7 @@ export default function CertificatesPage() {
             </div>
 
             {/* Modal Footer Bar */}
-            <div className="p-4 bg-[#FAF8F2] border-t border-slate-200 flex flex-wrap items-center justify-between text-xs text-[#5A4139] gap-3 shrink-0">
+            <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between text-xs text-[#5A4139] gap-3 shrink-0">
               <div>
                 <strong>Issued To:</strong> {selectedCert.entity} &bull; <strong>Address:</strong> {selectedCert.address}
               </div>

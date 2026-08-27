@@ -3,7 +3,7 @@ import RevealOnScroll from './RevealOnScroll';
 
 export default function AboutStrip() {
   return (
-    <section className="w-full bg-white py-20 md:py-28 border-y border-slate-100" id="about">
+    <section className="w-full bg-white py-12 md:py-16 border-y border-slate-100" id="about">
       <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
           

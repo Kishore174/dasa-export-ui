@@ -317,7 +317,7 @@ export default function CatalogPage() {
     <div className="font-body bg-[#FAF8F2] min-h-screen text-[#172019]">
       
       {/* 01 — CATALOG HERO */}
-      <section className="relative pt-16 md:pt-24 pb-20 md:pb-28 bg-[#FAF8F2] overflow-hidden border-b border-slate-200/70">
+      <section className="relative pt-10 md:pt-16 pb-12 md:pb-16 bg-[#FAF8F2] overflow-hidden border-b border-slate-200/70">
         <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
@@ -344,6 +344,7 @@ export default function CatalogPage() {
 
               {/* Action Buttons */}
               <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                {/* 
                 <a
                   href="/products/catalog-banner.jpg"
                   download="Dasa_Export_Catalog_2026.pdf"
@@ -352,6 +353,7 @@ export default function CatalogPage() {
                   <Download size={16} />
                   <span>Download Catalog PDF</span>
                 </a>
+                */}
 
                 <Link
                   to="/products"
@@ -412,7 +414,7 @@ export default function CatalogPage() {
 
 
       {/* 02 — PRODUCT CATEGORIES */}
-      <section className="py-16 md:py-24 bg-white border-b border-slate-200/70">
+      <section className="py-16 md:py-16 bg-white border-b border-slate-200/70">
         <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
           
           <div className="text-center max-w-2xl mx-auto mb-12">
@@ -450,7 +452,7 @@ export default function CatalogPage() {
 
 
       {/* 03 — FEATURED PRODUCT (Editorial Showcase) */}
-      <section className="py-20 md:py-28 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <section className="py-12 md:py-16 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="bg-white rounded-3xl p-8 sm:p-12 lg:p-16 border border-slate-200/80 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* LEFT: Huge product photograph */}
@@ -527,7 +529,7 @@ export default function CatalogPage() {
 
 
       {/* 04 — PRODUCT COLLECTION (Asymmetric Grid Layout) */}
-      <section className="py-20 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <section className="py-12 md:py-16 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
         
         <div className="mb-12">
           <span className="font-eyebrow text-xs uppercase tracking-[0.2em] text-[#F4A62A] font-bold block mb-2">
@@ -587,7 +589,7 @@ export default function CatalogPage() {
 
 
       {/* 05 — CATEGORY FEATURE BANNER (Dehydrated Vegetables Showcase) */}
-      <section className="py-20 md:py-28 bg-[#0B2B1B] text-white relative overflow-hidden border-y border-emerald-950">
+      <section className="py-12 md:py-16 bg-[#0B2B1B] text-white relative overflow-hidden border-y border-emerald-950">
         <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -653,7 +655,7 @@ export default function CatalogPage() {
 
 
       {/* 06 — PRODUCT SPECIFICATIONS (Clean Product Datasheet Selector) */}
-      <section className="py-20 md:py-28 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <section className="py-12 md:py-16 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
         
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="font-eyebrow text-xs uppercase tracking-[0.2em] text-[#F4A62A] font-bold block mb-2">
@@ -775,7 +777,7 @@ export default function CatalogPage() {
 
 
       {/* 07 — PACKAGING (Packaging Designed for Global Supply) */}
-      <section className="py-20 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <section className="py-12 md:py-16 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
         
         <div className="mb-12">
           <span className="font-eyebrow text-xs uppercase tracking-[0.2em] text-[#F4A62A] font-bold block mb-2">
@@ -821,7 +823,7 @@ export default function CatalogPage() {
 
 
       {/* 08 — QUALITY & CERTIFICATIONS (Clean Certificate Slider Showcase) */}
-      <section className="py-20 bg-white border-t border-slate-200/80">
+      <section className="py-12 md:py-16 bg-white border-t border-slate-200/80">
         <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
           
           <div className="text-center max-w-2xl mx-auto mb-12">
@@ -872,7 +874,7 @@ export default function CatalogPage() {
 
 
       {/* 09 — EXPORT READY (Deep Green Global Readiness) */}
-      <section className="py-20 md:py-28 bg-[#0B2B1B] text-white relative overflow-hidden">
+      <section className="py-12 md:py-16 bg-[#0B2B1B] text-white relative overflow-hidden">
         {/* Subtle Map Background Pattern */}
         <div
           className="absolute inset-0 opacity-10 pointer-events-none"
@@ -919,7 +921,7 @@ export default function CatalogPage() {
 
 
       {/* 10 — DOWNLOAD CATALOG CTA (Full Width Premium CTA) */}
-      <section className="py-20 bg-[#FAF8F2] border-t border-slate-200/80">
+      <section className="py-12 md:py-16 bg-[#FAF8F2] border-t border-slate-200/80">
         <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="bg-white rounded-3xl p-8 md:p-14 border border-slate-200/80 shadow-md flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="max-w-2xl space-y-3">
@@ -948,7 +950,7 @@ export default function CatalogPage() {
 
 
       {/* 11 — EXPORT ENQUIRY (Two Column Form Section) */}
-      <section id="enquiry-form" className="py-20 md:py-28 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+      <section id="enquiry-form" className="py-12 md:py-16 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
         
         <div className="mb-12 text-center max-w-2xl mx-auto">
           <span className="font-eyebrow text-xs uppercase tracking-[0.2em] text-[#F4A62A] font-bold block mb-2">

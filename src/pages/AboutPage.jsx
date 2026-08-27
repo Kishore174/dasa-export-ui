@@ -107,37 +107,32 @@ const AboutPage = () => {
   return (
     <div className="font-body bg-white min-h-screen">
       {/* Header Banner — Premium Cinematic Theme */}
-      <section className="relative py-20 md:py-28 bg-black text-white overflow-hidden border-b border-white/10">
+      <section className="relative py-12 md:py-16 bg-[#0B2B1B] text-white overflow-hidden border-b border-[#0B2B1B]/10">
         {/* Cinematic Background Image Layer */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img
-            src="/about-hero-bg.jpg"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "https://images.unsplash.com/photo-1509358271058-acd02cc93898?auto=format&fit=crop&w=2000&q=85";
-            }}
-            alt="South India Organic Spice Farm Plantation"
-            className="w-full h-full object-cover object-center opacity-70"
+            src="/about-premium-hero.png"
+            alt="Dasa Exports Premium Quality Products"
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
         </div>
 
-        <div className="relative z-10 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
-          <span className="font-eyebrow inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-[11px] uppercase tracking-[0.2em] text-white font-bold mb-6 shadow-sm">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop mt-4">
+          <span className="font-eyebrow inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-[11px] uppercase tracking-[0.2em] text-white font-bold mb-6 shadow-md">
             <Building2 size={14} className="text-[#F15A24]" />
             About Dasa Export
           </span>
 
-          <h1 className="font-display-lg text-4xl md:text-6xl font-serif font-bold max-w-4xl leading-tight text-white drop-shadow-xl">
+          <h1 className="font-display-lg text-4xl md:text-6xl font-serif font-bold max-w-4xl leading-tight text-white drop-shadow-2xl">
             Connecting India&rsquo;s Agricultural Richness to Global Markets.
           </h1>
 
-          <p className="mt-6 text-base md:text-lg leading-relaxed text-white/90 max-w-2xl font-normal drop-shadow-md">
+          <p className="mt-6 text-base md:text-lg leading-relaxed text-white/95 max-w-2xl font-medium drop-shadow-lg">
             Headquartered in Tamil Nadu, India, Dasa Export is a premier grower, processor, and exporter of organic botanicals, dehydrated spices, and spray-dried agricultural powders.
           </p>
 
           {/* Stats strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-10 border-t border-white/10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-10 border-t border-white/20">
             {companyStats.map((st) => (
               <AnimatedStat key={st.label} label={st.label} value={st.value} />
             ))}
@@ -146,7 +141,7 @@ const AboutPage = () => {
       </section>
 
       {/* Our Mission & Story Section — Optimized Responsive Layout */}
-      <section className="py-12 sm:py-16 md:py-24 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop bg-white">
+      <section className="py-12 sm:py-16 md:py-12 md:py-16 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
           
           {/* Left Column (7 cols): Editorial Story */}

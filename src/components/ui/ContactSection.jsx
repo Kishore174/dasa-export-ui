@@ -60,7 +60,7 @@ export default function ContactSection({ selectedProductName = '' }) {
 
   return (
     <section
-      className="w-full bg-white py-20 md:py-28 border-t border-slate-200/60"
+      className="w-full bg-white py-12 md:py-16 border-t border-slate-200/60"
       id="quote-form"
     >
       <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">

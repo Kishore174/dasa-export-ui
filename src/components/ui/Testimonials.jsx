@@ -73,7 +73,7 @@ const Testimonials = () => {
   const active = testimonials[activeIndex];
 
   return (
-    <section id="testimonials" className="py-24 font-body relative overflow-hidden" style={{ background: "#FFFFFF" }}>
+    <section id="testimonials" className="py-12 md:py-16 font-body relative overflow-hidden" style={{ background: "#FFFFFF" }}>
       {/* Background ambient grid pattern */}
       <div
         className="absolute inset-0 opacity-[0.05] pointer-events-none"

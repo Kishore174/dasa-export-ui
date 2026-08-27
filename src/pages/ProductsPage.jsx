@@ -22,21 +22,31 @@ export default function ProductsPage() {
   });
 
   return (
-    <div className="pt-24 pb-section-gap bg-background min-h-screen">
-      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop space-y-12">
-        
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-4">
-          <span className="font-eyebrow text-eyebrow text-tertiary-container uppercase tracking-widest block">
-            Export Catalog
-          </span>
-          <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">
-            Our Products
-          </h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant">
-            Explore our range of premium agricultural ingredients, dehydrated powders, and spices.
-          </p>
+    <div className="font-body bg-white min-h-screen">
+      {/* Cinematic Hero Section */}
+      <section className="relative w-full min-h-[45vh] flex flex-col justify-center overflow-hidden bg-[#0B2B1B] py-12 md:py-16 border-b border-[#0B2B1B]/10">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+           <img src="/products-all-premium.png" className="w-full h-full object-cover object-center" alt="Premium Products Assortment" />
+           {/* Subtle gradient to ensure the centered text always stays perfectly readable */}
+           <div className="absolute inset-0 bg-black/40" />
         </div>
+        
+        <div className="max-w-[1440px] w-full mx-auto px-margin-mobile md:px-margin-desktop relative z-10 mt-8 text-center">
+          <div className="max-w-3xl mx-auto">
+            <span className="font-eyebrow text-eyebrow tracking-widest text-[#F15A24] uppercase bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full inline-block mb-6 font-bold shadow-sm">
+              EXPORT CATALOG
+            </span>
+            <h1 className="font-display-lg text-4xl md:text-6xl font-serif font-bold text-white mb-5 leading-tight drop-shadow-2xl">
+              Our Products
+            </h1>
+            <p className="font-body-lg text-base md:text-lg text-white/95 max-w-2xl mx-auto font-medium drop-shadow-lg">
+              Explore our range of premium agricultural ingredients, dehydrated powders, and spices.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop space-y-12 py-12">
 
         {/* Category Pills & Search */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-outline/10">
