@@ -13,11 +13,46 @@ export default function ContactSection({ selectedProductName = '' }) {
     quantity: '',
     message: ''
   });
+  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (!formData.name || !formData.email) return;
+    setLoading(true);
+
+    try {
+      await fetch("https://formsubmit.co/ajax/contact@dasaexports.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `New Export Enquiry: ${formData.name} (${formData.company || "Individual"})`,
+          _replyto: formData.email,
+          _captcha: "false",
+          "Buyer Name": formData.name,
+          "Company Name": formData.company,
+          "Destination Country": formData.country,
+          "Business Email": formData.email,
+          "Product Interest": formData.product,
+          "Quantity (MT)": formData.quantity,
+          "Specifications / Message": formData.message,
+        }),
+      });
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Export enquiry mail error:", err);
+      const mailtoSubject = encodeURIComponent(`Export Enquiry: ${formData.name} - ${formData.product}`);
+      const mailtoBody = encodeURIComponent(
+        `Buyer Name: ${formData.name}\nCompany: ${formData.company}\nCountry: ${formData.country}\nEmail: ${formData.email}\nProduct Interest: ${formData.product}\nQuantity (MT): ${formData.quantity}\nSpecifications: ${formData.message}`
+      );
+      window.open(`mailto:contact@dasaexports.com?subject=${mailtoSubject}&body=${mailtoBody}`, '_blank');
+      setSubmitted(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const update = (field) => (e) =>
@@ -58,7 +93,7 @@ export default function ContactSection({ selectedProductName = '' }) {
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="px-6 py-3 bg-[#F15A24] text-white font-eyebrow text-xs uppercase tracking-widest font-bold hover:bg-[#0B2B1B] transition-colors"
+                  className="px-6 py-3 bg-[#F15A24] text-white font-eyebrow text-xs uppercase tracking-widest font-bold hover:bg-[#0B2B1B] transition-colors cursor-pointer"
                 >
                   Submit Another Enquiry
                 </button>
@@ -112,7 +147,7 @@ export default function ContactSection({ selectedProductName = '' }) {
                     <select
                       value={formData.product}
                       onChange={update('product')}
-                      className="w-full bg-transparent border-b border-[#DFDCD5] py-2 text-[#0B2B1B] focus:outline-none focus:border-[#F15A24] font-body-md text-sm transition-colors"
+                      className="w-full bg-transparent border-b border-[#DFDCD5] py-2 text-[#0B2B1B] focus:outline-none focus:border-[#F15A24] font-body-md text-sm transition-colors cursor-pointer"
                     >
                       {PRODUCTS.map((p) => (
                         <option key={p.id} value={p.name}>
@@ -147,9 +182,10 @@ export default function ContactSection({ selectedProductName = '' }) {
                 <div className="pt-4">
                   <button
                     type="submit"
-                    className="group inline-flex items-center gap-2 px-8 py-4 bg-[#F15A24] text-white font-eyebrow text-xs uppercase tracking-[0.15em] font-bold hover:bg-[#0B2B1B] transition-colors"
+                    disabled={loading}
+                    className="group inline-flex items-center gap-2 px-8 py-4 bg-[#F15A24] text-white font-eyebrow text-xs uppercase tracking-[0.15em] font-bold hover:bg-[#0B2B1B] transition-colors disabled:opacity-60 cursor-pointer"
                   >
-                    <span>Submit Enquiry</span>
+                    <span>{loading ? "Submitting Enquiry..." : "Submit Enquiry"}</span>
                     <ArrowUpRight
                       size={15}
                       className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -181,10 +217,14 @@ export default function ContactSection({ selectedProductName = '' }) {
 
                 <ContactRow
                   icon={<Mail size={19} className="text-[#2E7D32]" />}
-                  label="General Inquiries"
+                  label="Official Email Desks"
                   href="mailto:contact@dasaexports.com"
                 >
-                  contact@dasaexports.com
+                  <div className="flex flex-col gap-0.5">
+                    <span>contact@dasaexports.com</span>
+                    <span>info@dasaexports.com</span>
+                    <span>sales@dasaexports.com</span>
+                  </div>
                 </ContactRow>
 
                 <ContactRow
@@ -218,10 +258,10 @@ export default function ContactSection({ selectedProductName = '' }) {
               <div className="border border-[#E5E2D9] overflow-hidden bg-[#FAF8F2] p-5 space-y-3">
                 <div className="flex justify-between items-center border-b border-[#0B2B1B]/10 pb-3">
                   <span className="font-eyebrow text-[10px] text-[#D4A359] uppercase tracking-wider font-bold">
-                    Visit Us & Factory Tours
+                    Visit Us &amp; Factory Tours
                   </span>
                   <span className="text-[11px] font-bold text-[#2E7D32] bg-[#2E7D32]/10 px-2 py-0.5">
-                    ISO & FSSAI
+                    ISO &amp; FSSAI
                   </span>
                 </div>
                 <p className="text-xs text-[#5A4139] leading-relaxed">

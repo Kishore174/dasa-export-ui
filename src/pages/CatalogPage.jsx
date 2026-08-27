@@ -15,6 +15,71 @@ import {
 // Catalog Products Data
 const CATALOG_PRODUCTS = [
   {
+    id: "millet-products",
+    name: "Millet Powders & Grains",
+    category: "Organic",
+    categoryLabel: "ANCIENT SUPER-GRAIN",
+    shortDesc: "Nutrient-dense, 100% gluten-free ancient Indian millet flours (Ragi, Foxtail, Bajra, Sorghum) cold-milled for international food processing.",
+    image: "/products/millet.jpg",
+    origin: "India",
+    form: "De-hulled Grains & Fine Flour",
+    application: "Bakery, Health Foods, Breakfast Cereals",
+    packaging: "25 – 50 kg HDPE / Paper Bag",
+    size: "large",
+  },
+  {
+    id: "ragi-millet",
+    name: "Finger Millet (Ragi) Powder",
+    category: "Millets",
+    categoryLabel: "HIGH CALCIUM GRAIN",
+    shortDesc: "Calcium-dense organic Finger Millet (Ragi) flour, cold-milled from premium de-hulled grains for health foods and infant nutrition.",
+    image: "/products/ragi-millet.jpg",
+    origin: "India",
+    form: "Fine Cold-Milled Flour",
+    application: "Infant Foods, Health Drinks, Bakery",
+    packaging: "25 – 50 kg HDPE Bag",
+    size: "medium",
+  },
+  {
+    id: "foxtail-millet",
+    name: "Foxtail Millet Flour",
+    category: "Millets",
+    categoryLabel: "PROTEIN-RICH GRAIN",
+    shortDesc: "Golden-yellow Foxtail millet grain and flour packed with dietary fiber, iron, and protein for gluten-free formulations.",
+    image: "/products/foxtail-millet.jpg",
+    origin: "India",
+    form: "Whole Grain & Fine Flour",
+    application: "Gluten-Free Bakery, Breakfast Cereals",
+    packaging: "25 – 50 kg Kraft Bag",
+    size: "medium",
+  },
+  {
+    id: "bajra-millet",
+    name: "Pearl Millet (Bajra) Powder",
+    category: "Millets",
+    categoryLabel: "ENERGY-DENSE GRAIN",
+    shortDesc: "Magnesium and iron-rich Pearl Millet (Bajra) flour processed under strict low-moisture hygiene standards.",
+    image: "/products/bajra-millet.jpg",
+    origin: "India",
+    form: "Pure Bajra Flour",
+    application: "Traditional Flatbreads, Snack Foods",
+    packaging: "25 – 50 kg HDPE Bag",
+    size: "small",
+  },
+  {
+    id: "jowar-millet",
+    name: "Sorghum (Jowar) Flour",
+    category: "Millets",
+    categoryLabel: "GLUTEN-FREE STAPLE",
+    shortDesc: "Pure white Sorghum (Jowar) flour cold-milled for light texture and high dietary fiber in commercial food production.",
+    image: "/products/jowar-millet.jpg",
+    origin: "India",
+    form: "Fine White Flour",
+    application: "Baking Blends, Pasta, Extruded Snacks",
+    packaging: "25 – 50 kg Paper Bag",
+    size: "small",
+  },
+  {
     id: "tomato-powder",
     name: "Tomato Powder",
     category: "Powders",
@@ -141,6 +206,15 @@ const DATASHEET_SPECS = {
     packaging: "20 kg Poly-lined Kraft Bag",
     solubility: "Rehydratable",
   },
+  "Millet Powders": {
+    form: "De-hulled Grains & Cold-Milled Flour",
+    moisture: "Up to 8.0%",
+    mesh: "80 – 100 Fine Mesh",
+    shelfLife: "24 Months",
+    origin: "Tamil Nadu & Karnataka, India",
+    packaging: "25 kg – 50 kg HDPE / Paper Bag",
+    solubility: "100% Gluten-Free Grain",
+  },
 };
 
 // Packaging Formats Data
@@ -168,13 +242,11 @@ const PACKAGING_FORMATS = [
   },
 ];
 
-// Certificates List
+// Certificates List (Exact 3 Registered PDF Assets)
 const CERTIFICATES = [
-  { id: "iso", title: "ISO 9001:2015", image: "/certificates/iso.jpg", authority: "Global Quality Management" },
-  { id: "fssai", title: "FSSAI License", image: "/certificates/fssai.jpg", authority: "Food Safety Authority of India" },
-  { id: "apeda", title: "APEDA Certified", image: "/certificates/apeda.jpg", authority: "Agricultural Export Authority" },
-  { id: "haccp", title: "HACCP Compliant", image: "/certificates/haccp.jpg", authority: "Hazard Control System" },
-  { id: "organic", title: "Organic Certified", image: "/certificates/organic.jpg", authority: "NPOP Organic Certification" },
+  { id: "gst", title: "GST Registration Certificate", regNo: "33BYUPD2670Q2ZR", image: "/certificates/real-gst-1.png", pdfUrl: "/certificates/gst-certificate.pdf", authority: "Government of India — Form GST REG-06" },
+  { id: "fssai", title: "FSSAI Food Safety License", regNo: "12426998000511", image: "/certificates/real-fssai-1.png", pdfUrl: "/certificates/fssai-certificate.pdf", authority: "Food Safety Authority of India (Central License)" },
+  { id: "dasa-cert", title: "DASA Export Registration", regNo: "Exporter Certificate", image: "/certificates/real-dasa-cert-1.png", pdfUrl: "/certificates/dasa-export-certificate.pdf", authority: "Export Registration Authority" },
 ];
 
 export default function CatalogPage() {
@@ -192,18 +264,53 @@ export default function CatalogPage() {
     quantity: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const categoriesList = ["All", "Powders", "Dehydrated Vegetables", "Spices", "Organic", "Fruit Powders"];
+  const categoriesList = ["All", "Millets", "Powders", "Dehydrated Vegetables", "Spices", "Organic", "Fruit Powders"];
 
   const filteredProducts =
     activeCategory === "All"
       ? CATALOG_PRODUCTS
       : CATALOG_PRODUCTS.filter((p) => p.category === activeCategory || p.categoryLabel.includes(activeCategory.toUpperCase()));
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (!formData.name || !formData.email) return;
+    setLoading(true);
+
+    try {
+      await fetch("https://formsubmit.co/ajax/contact@dasaexports.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `New Catalog Export Enquiry: ${formData.name} (${formData.company || "Individual"})`,
+          _replyto: formData.email,
+          _captcha: "false",
+          "Buyer Name": formData.name,
+          "Company Name": formData.company,
+          "Business Email": formData.email,
+          "Destination Country": formData.country,
+          "Product Interest": formData.product,
+          "Quantity Required": formData.quantity,
+          "Message / Specifications": formData.message,
+        }),
+      });
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Catalog mail submission error:", err);
+      const mailtoSubject = encodeURIComponent(`Export Enquiry: ${formData.name} - ${formData.product}`);
+      const mailtoBody = encodeURIComponent(
+        `Buyer Name: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nCountry: ${formData.country}\nProduct: ${formData.product}\nQuantity: ${formData.quantity}\nMessage: ${formData.message}`
+      );
+      window.open(`mailto:contact@dasaexports.com?subject=${mailtoSubject}&body=${mailtoBody}`, '_blank');
+      setSubmitted(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -1004,10 +1111,11 @@ export default function CatalogPage() {
                 <div>
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-[#F15A24] text-white font-eyebrow text-xs uppercase tracking-[0.15em] font-bold rounded-lg hover:bg-[#0B2B1B] transition-colors shadow-md w-full sm:w-auto"
+                    disabled={loading}
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#F15A24] text-white font-eyebrow text-xs uppercase tracking-[0.15em] font-bold rounded-lg hover:bg-[#0B2B1B] transition-colors shadow-md w-full sm:w-auto disabled:opacity-60 cursor-pointer"
                   >
                     <Send size={15} />
-                    <span>Send Export Enquiry</span>
+                    <span>{loading ? "Submitting..." : "Send Export Enquiry"}</span>
                   </button>
                 </div>
               </form>

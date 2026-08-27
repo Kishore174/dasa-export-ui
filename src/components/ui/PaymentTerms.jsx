@@ -1,21 +1,111 @@
 import React from "react";
-import { Landmark, FileText, CreditCard, Mail, MessageSquare } from "lucide-react";
+import {
+  Landmark,
+  FileText,
+  CreditCard,
+  Mail,
+  MessageSquare,
+  Clock,
+  CheckCircle2,
+  FileCheck,
+  CalendarCheck2,
+  TrendingUp,
+  PackageCheck,
+  Boxes,
+  Award,
+  ShieldCheck,
+  BadgeCheck,
+  Sparkles,
+} from "lucide-react";
 
 const paymentMethods = [
   {
-    icon: Landmark,
-    title: "Telegraphic Transfer (TT)",
-    desc: "Our preferred method for speed and reliability. Standard terms require a 30% advance deposit to initiate production and secure raw materials, with the remaining 70% balance due upon presentation of draft shipping documents (Bill of Lading).",
-  },
-  {
-    icon: FileText,
-    title: "Letter of Credit (LC)",
-    desc: "Accepted for high-volume orders exceeding 1 FCL (Full Container Load). We require an Irrevocable, Confirmed LC at sight from a top-tier international bank. Drafts must be approved prior to final issuance to ensure smooth processing.",
-  },
-  {
+    number: "01",
     icon: CreditCard,
-    title: "Advance Payment",
-    desc: "Available for sample orders, air freight shipments, or expedited requests. 100% advance payment ensures immediate processing without banking delays associated with documentary collections.",
+    title: "100% Advance Payment",
+    desc: "Payment via T/T (Telegraphic Transfer) prior to production / shipment.",
+  },
+  {
+    number: "02",
+    icon: Landmark,
+    title: "100% T/T (Telegraphic Transfer)",
+    desc: "Direct bank-to-bank wire transfer.",
+  },
+  {
+    number: "03",
+    icon: FileText,
+    title: "100% Irrevocable & Confirmed LC at 30/45/60 Days Usance",
+    desc: "Letter of credit backed by a prime international bank.",
+  },
+  {
+    number: "04",
+    icon: Clock,
+    title: "50% Advance & 50% Balance via LC (30/45/60 Days)",
+    desc: "50% Advance via T/T and the remaining 50% through usance LC.",
+  },
+  {
+    number: "05",
+    icon: CheckCircle2,
+    title: "LC at Sight",
+    desc: "100% payment release immediately upon shipment and submission of compliant documents to the bank.",
+  },
+  {
+    number: "06",
+    icon: FileCheck,
+    title: "50% Advance & 50% Against BL (Bill of Lading) Scan Copy",
+    desc: "50% Advance via T/T, and the balance 50% immediate T/T release upon sharing the scanned copy of the BL before final vessel departure.",
+  },
+];
+
+const incoTermsList = [
+  {
+    icon: CalendarCheck2,
+    badge: "Contract",
+    title: "Contract Period",
+    value: "3 Months, 6 Months, 1 Year & 3 Years Available",
+    desc: "Flexible supply contracts designed for recurring shipments and long-term market stability.",
+  },
+  {
+    icon: TrendingUp,
+    badge: "Pricing",
+    title: "No Price Fixation",
+    value: "Transparent Dynamic Pricing",
+    desc: "Fair competitive market rate structures without rigid price fixation penalties.",
+  },
+  {
+    icon: Boxes,
+    badge: "Order Scale",
+    title: "MOQ Support",
+    value: "Minimum Order Quantity Available",
+    desc: "Scalable order volumes catered to both initial trial orders and full container shipments.",
+  },
+  {
+    icon: PackageCheck,
+    badge: "Packaging",
+    title: "Standard Packing",
+    value: "5 KG, 10 KG & Custom Packaging",
+    desc: "Available in standard 5 KG and 10 KG packs, or custom packed at the importer's discretion.",
+  },
+  {
+    icon: Award,
+    badge: "Branding",
+    title: "Standby Brand Support",
+    value: "Standby Brand Available",
+    desc: "OEM and private labeling solutions ready for rapid international market deployment.",
+  },
+  {
+    icon: ShieldCheck,
+    badge: "Inspection",
+    title: "Third-Party Inspection",
+    value: "Third Party Inspection Available",
+    desc: "Full pre-shipment quality verification by accredited independent inspection agencies.",
+  },
+  {
+    icon: BadgeCheck,
+    badge: "Assurance",
+    title: "Quality Control (QC)",
+    value: "QC - Quality Control Available",
+    desc: "Strict quality control compliance checks executed for every export batch.",
   },
 ];
 
@@ -66,9 +156,12 @@ const PaymentTerms = () => {
               return (
                 <div key={idx} className="py-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start">
                   
-                  {/* Left Column (4 cols): Icon & Title */}
-                  <div className="md:col-span-4 flex items-center gap-3.5">
-                    <div className="text-[#F15A24] shrink-0">
+                  {/* Left Column (5 cols): Number, Icon & Title */}
+                  <div className="md:col-span-5 flex items-start gap-3.5">
+                    <span className="font-mono text-xs font-bold text-[#F15A24] bg-[#F15A24]/10 px-2 py-1 rounded shrink-0 mt-0.5">
+                      {item.number}
+                    </span>
+                    <div className="text-[#F15A24] shrink-0 mt-0.5">
                       <Icon size={20} />
                     </div>
                     <h3 className="font-headline-sm text-headline-sm font-serif text-[#1B1C19]">
@@ -76,8 +169,8 @@ const PaymentTerms = () => {
                     </h3>
                   </div>
 
-                  {/* Right Column (8 cols): Detailed Description */}
-                  <div className="md:col-span-8">
+                  {/* Right Column (7 cols): Detailed Description */}
+                  <div className="md:col-span-7">
                     <p className="font-body-md text-body-md text-[#5A4139] leading-relaxed">
                       {item.desc}
                     </p>
@@ -133,6 +226,67 @@ const PaymentTerms = () => {
               ))}
             </div>
 
+          </div>
+        </section>
+
+        {/* Inco Terms Section */}
+        <section className="mb-24">
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-[#DFDCD5] mb-10 gap-4">
+            <div>
+              <span className="font-eyebrow text-eyebrow tracking-widest text-[#F15A24] uppercase font-bold block mb-2">
+                Trade Policies
+              </span>
+              <h2 className="font-headline-md text-headline-md font-serif text-[#1B1C19]">
+                Inco Terms &amp; Commercial Conditions
+              </h2>
+            </div>
+            <p className="font-body-md text-body-md text-[#5A4139] max-w-md leading-relaxed">
+              Standardized trade terms and commercial flexibilities designed for seamless global trade operations.
+            </p>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {incoTermsList.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={idx}
+                  className="group relative bg-white border border-[#DFDCD5]/85 rounded-2xl p-6 hover:shadow-xl hover:border-[#F15A24]/60 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                >
+                  {/* Hover Accent Top Bar */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#F15A24] to-[#D1430A] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  <div>
+                    {/* Header Row: Icon & Badge */}
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="w-12 h-12 rounded-xl bg-[#FAF8F2] border border-[#DFDCD5] text-[#F15A24] flex items-center justify-center group-hover:bg-[#F15A24] group-hover:text-white transition-colors duration-300 shadow-2xs">
+                        <Icon size={22} />
+                      </div>
+                      <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#5A4139] bg-[#FAF8F2] border border-[#DFDCD5]/70 px-2.5 py-1 rounded-full">
+                        {item.badge}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="font-headline-sm text-headline-sm font-serif text-[#1B1C19] mb-1.5 group-hover:text-[#F15A24] transition-colors">
+                      {item.title}
+                    </h3>
+
+                    {/* Primary Value */}
+                    <div className="font-bold text-[#1B1C19] text-sm mb-3 flex items-center gap-1.5">
+                      <Sparkles size={13} className="text-[#F15A24] shrink-0" />
+                      <span>{item.value}</span>
+                    </div>
+
+                    {/* Description */}
+                    <p className="font-body-md text-body-md text-[#5A4139] leading-relaxed text-sm">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 

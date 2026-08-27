@@ -1,5 +1,13 @@
 export const CATEGORIES = [
   {
+    id: 'millet-products',
+    name: 'Millet Products',
+    shortDesc: 'Ancient Indian super-grains and cold-milled nutrient-dense millet powders harvested for global health & food processing.',
+    mainImage: '/products/millet.jpg',
+    products: ['Finger Millet (Ragi) Powder', 'Foxtail Millet Flour', 'Pearl Millet (Bajra) Powder', 'Sorghum (Jowar) Flour'],
+    count: '12+ Varieties'
+  },
+  {
     id: 'dehydrated-powders',
     name: 'Dehydrated Powders',
     shortDesc: 'Sun & low-temperature dehydrated vegetable powders offering long shelf life and natural flavor retention.',
@@ -34,6 +42,81 @@ export const CATEGORIES = [
 ];
 
 export const PRODUCTS = [
+  {
+    id: 'millet-products',
+    slug: 'millet-products',
+    name: 'Organic Millet Powders & Grains',
+    category: 'Millet Products',
+    image: '/products/millet.jpg',
+    origin: 'Tamil Nadu & Karnataka, India',
+    description: '100% natural, gluten-free ancient Indian millet powders (Ragi, Foxtail, Pearl Millet, Sorghum) cold-milled to preserve dietary fibre, calcium, and bio-active micro-nutrients.',
+    specs: {
+      'Purity': '99.5% Cleaned & De-hulled',
+      'Moisture': 'Max 8.0%',
+      'Gluten Content': '0% (Gluten-Free Certified)',
+      'Mesh Size': '80 - 100 Fine Mesh'
+    }
+  },
+  {
+    id: 'ragi-millet',
+    slug: 'ragi-millet',
+    name: 'Finger Millet (Ragi) Powder',
+    category: 'Millet Products',
+    image: '/products/ragi-millet.jpg',
+    origin: 'Tamil Nadu & Karnataka, India',
+    description: 'Calcium-rich organic Finger Millet (Ragi) powder cold-milled from top quality de-hulled grains. High dietary fiber and zero gluten.',
+    specs: {
+      'Calcium Content': 'High (344mg / 100g)',
+      'Moisture': 'Max 7.5%',
+      'Purity': '99.8% Cleaned',
+      'Mesh Size': '80 - 100 Mesh'
+    }
+  },
+  {
+    id: 'foxtail-millet',
+    slug: 'foxtail-millet',
+    name: 'Foxtail Millet Flour',
+    category: 'Millet Products',
+    image: '/products/foxtail-millet.jpg',
+    origin: 'Andhra Pradesh & Karnataka, India',
+    description: 'Nutrient-dense golden Foxtail millet grain and flour rich in iron, protein, and complex carbohydrates for healthy food processing.',
+    specs: {
+      'Protein Content': '12.3%',
+      'Moisture': 'Max 8.0%',
+      'Gluten Content': '0%',
+      'Mesh Size': '80 Mesh'
+    }
+  },
+  {
+    id: 'bajra-millet',
+    slug: 'bajra-millet',
+    name: 'Pearl Millet (Bajra) Powder',
+    category: 'Millet Products',
+    image: '/products/bajra-millet.jpg',
+    origin: 'Rajasthan & Gujarat, India',
+    description: 'Energy-dense Pearl Millet (Bajra) flour packed with magnesium, potassium, and zinc for bakery and staple food applications.',
+    specs: {
+      'Iron & Magnesium': 'Rich',
+      'Moisture': 'Max 8.0%',
+      'Mesh Size': '80 Mesh',
+      'Purity': '99.5%'
+    }
+  },
+  {
+    id: 'jowar-millet',
+    slug: 'jowar-millet',
+    name: 'Sorghum (Jowar) Flour',
+    category: 'Millet Products',
+    image: '/products/jowar-millet.jpg',
+    origin: 'Maharashtra & Karnataka, India',
+    description: 'Pure white Sorghum (Jowar) flour cold-ground from premium whole grains. Ideal for gluten-free baking and food formulations.',
+    specs: {
+      'Dietary Fiber': 'High (9.7g / 100g)',
+      'Moisture': 'Max 7.5%',
+      'Gluten Content': '0%',
+      'Mesh Size': '80 - 100 Mesh'
+    }
+  },
   {
     id: 'tomato-powder',
     slug: 'tomato-powder',

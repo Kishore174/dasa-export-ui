@@ -1,21 +1,15 @@
 import React, { useState } from "react";
-import { ArrowRight, CheckCircle2, Ship, Clock3 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Ship, Clock3, ShieldCheck, User, Mail, Phone, Globe, Package, Sparkles } from "lucide-react";
 
 const products = [
   "Tomato Powder",
-  "Turmeric Powder",
-  "Moringa Powder",
+  "Turmeric Powder (High Curcumin)",
+  "Moringa Powder (Organic)",
   "Beetroot Powder",
-  "Onion Powder",
-  "Garlic Powder",
-  "Other",
+  "Onion Powder & Flakes",
+  "Garlic Powder & Flakes",
+  "Custom Spice / Vegetable Blend",
 ];
-
-const fieldStyle = {
-  background: "#FAF8F2",
-  borderColor: "#DFDCD5",
-  color: "#0B2B1B",
-};
 
 const RequestEstimateForm = () => {
   const [values, setValues] = useState({
@@ -32,7 +26,8 @@ const RequestEstimateForm = () => {
 
   const update = (key) => (e) => setValues((v) => ({ ...v, [key]: e.target.value }));
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!values.name || !values.email) return;
     setLoading(true);
 
@@ -44,7 +39,7 @@ const RequestEstimateForm = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          _subject: `New Estimate Request from ${values.name} (${values.country || "Global"})`,
+          _subject: `New International Quote Request: ${values.name} (${values.country || "Global"})`,
           _replyto: values.email,
           _captcha: "false",
           "Buyer Name": values.name,
@@ -52,8 +47,8 @@ const RequestEstimateForm = () => {
           "Mobile / WhatsApp": values.mobile,
           "Country": values.country,
           "City": values.city,
-          "Product": values.product,
-          "Message": values.message,
+          "Product Required": values.product,
+          "Specifications / Message": values.message,
         }),
       });
       setSubmitted(true);
@@ -66,125 +61,198 @@ const RequestEstimateForm = () => {
   };
 
   return (
-    <div>
-      <div className="border p-8 bg-white border-[#0B2B1B]/10">
-        <div className="flex items-center justify-between">
-          <p className="font-eyebrow text-[11px] uppercase tracking-[2.5px]" style={{ color: "#D4A359" }}>
-            Request Estimate
-          </p>
-          <p className="font-eyebrow text-[10px] tracking-wider" style={{ color: "#0B2B1B", opacity: 0.4 }}>
-            REF 20260801
-          </p>
+    <div className="bg-white/95 backdrop-blur-xl border border-white/40 shadow-2xl rounded-2xl overflow-hidden font-body text-[#172019]">
+      
+      {/* Top Header Bar */}
+      <div className="bg-[#0B2B1B] text-white p-6 sm:p-7 relative overflow-hidden">
+        {/* Subtle accent light blur */}
+        <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#F15A24]/20 rounded-full blur-2xl pointer-events-none" />
+
+        <div className="relative z-10 flex items-center justify-between mb-2">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 border border-white/15 rounded-full text-[10px] font-eyebrow uppercase tracking-[0.2em] text-[#F4A62A] font-bold">
+            <Sparkles size={12} className="text-[#F15A24]" />
+            DIRECT EXPORT DESK
+          </span>
+          <span className="font-mono text-[10px] text-white/50 tracking-wider">
+            24H RESPONSE SLA
+          </span>
         </div>
-        <h3 className="font-headline-md text-2xl font-semibold mt-3" style={{ color: "#0B2B1B" }}>
-          Get a shipment quote
+
+        <h3 className="font-display-lg text-2xl sm:text-3xl font-serif font-bold text-white leading-tight">
+          Request Export Estimate
         </h3>
-        <p className="font-body-md text-sm mt-2" style={{ color: "#5A4139" }}>
-          Tell us what you need — we'll reply with pricing and lead time.
+        <p className="text-xs sm:text-sm text-white/80 mt-1.5 font-normal leading-relaxed">
+          Get tailored FCL container pricing &amp; specifications directly from our trade team.
         </p>
+      </div>
 
+      {/* Form Body */}
+      <div className="p-6 sm:p-7 bg-white">
         {submitted ? (
-          <div className="mt-8 border p-6 text-center bg-[#FAF8F2] border-[#0B2B1B]/10">
-            <CheckCircle2 size={26} style={{ color: "#2E7D32" }} className="mx-auto" />
-            <p className="font-headline-md text-lg font-semibold mt-3" style={{ color: "#0B2B1B" }}>
-              Request received
-            </p>
-            <p className="font-body-md text-sm mt-1" style={{ color: "#5A4139" }}>
-              We'll get back to you at {values.email} within 4 hours.
-            </p>
-          </div>
-        ) : (
-          <div className="mt-7 flex flex-col gap-4">
-            <input
-              type="text"
-              placeholder="Name *"
-              value={values.name}
-              onChange={update("name")}
-              className="w-full border px-4 py-3 text-sm outline-none transition-colors focus:border-[#F15A24] placeholder:text-[#8E7067]"
-              style={fieldStyle}
-            />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
-                type="email"
-                placeholder="Email *"
-                value={values.email}
-                onChange={update("email")}
-                className="w-full border px-4 py-3 text-sm outline-none transition-colors focus:border-[#F15A24] placeholder:text-[#8E7067]"
-                style={fieldStyle}
-              />
-              <input
-                type="tel"
-                placeholder="Mobile"
-                value={values.mobile}
-                onChange={update("mobile")}
-                className="w-full border px-4 py-3 text-sm outline-none transition-colors focus:border-[#F15A24] placeholder:text-[#8E7067]"
-                style={fieldStyle}
-              />
+          <div className="py-8 text-center bg-[#FAF8F2] rounded-xl border border-[#2E7D32]/20 p-6 space-y-4">
+            <div className="w-14 h-14 mx-auto rounded-full bg-[#2E7D32]/10 text-[#2E7D32] flex items-center justify-center border border-[#2E7D32]/20 shadow-sm">
+              <CheckCircle2 size={32} />
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Country"
-                value={values.country}
-                onChange={update("country")}
-                className="w-full border px-4 py-3 text-sm outline-none transition-colors focus:border-[#F15A24] placeholder:text-[#8E7067]"
-                style={fieldStyle}
-              />
-              <input
-                type="text"
-                placeholder="City"
-                value={values.city}
-                onChange={update("city")}
-                className="w-full border px-4 py-3 text-sm outline-none transition-colors focus:border-[#F15A24] placeholder:text-[#8E7067]"
-                style={fieldStyle}
-              />
-            </div>
-
-            <select
-              value={values.product}
-              onChange={update("product")}
-              className="w-full border px-4 py-3 text-sm outline-none transition-colors focus:border-[#F15A24]"
-              style={fieldStyle}
-            >
-              {products.map((p) => (
-                <option key={p} value={p} style={{ color: "#0B2B1B", background: "#FFFFFF" }}>
-                  {p}
-                </option>
-              ))}
-            </select>
-
-            <textarea
-              placeholder="Message"
-              rows={4}
-              value={values.message}
-              onChange={update("message")}
-              className="w-full border px-4 py-3 text-sm outline-none transition-colors resize-none focus:border-[#F15A24] placeholder:text-[#8E7067]"
-              style={fieldStyle}
-            />
-
+            <h4 className="font-serif font-bold text-xl text-[#0B2B1B]">Estimate Request Submitted</h4>
+            <p className="text-xs sm:text-sm text-[#5A4139] leading-relaxed max-w-xs mx-auto">
+              Thank you, <strong className="text-[#0B2B1B]">{values.name}</strong>. Our export desk will review your container details and contact you at <span className="text-[#F15A24] font-bold">{values.email}</span> within 4 hours.
+            </p>
             <button
-              onClick={handleSubmit}
-              disabled={loading}
-              className="mt-1 w-full flex items-center justify-center gap-2 px-6 py-3.5 font-medium text-sm transition-colors hover:bg-[#0B2B1B] disabled:opacity-60"
-              style={{ background: "#F15A24", color: "#FFFFFF" }}
+              onClick={() => setSubmitted(false)}
+              className="mt-2 px-5 py-2.5 bg-[#0B2B1B] text-white font-eyebrow text-xs uppercase tracking-wider font-bold rounded-lg hover:bg-[#F15A24] transition-colors"
             >
-              {loading ? "Sending Quote Request..." : "Send request"}
-              <ArrowRight size={16} />
+              Submit Another Request
             </button>
           </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            
+            {/* Buyer Name */}
+            <div>
+              <label className="font-eyebrow text-[10.5px] uppercase tracking-wider text-[#5A4139] font-bold block mb-1.5">
+                Full Name *
+              </label>
+              <div className="relative">
+                <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input
+                  required
+                  type="text"
+                  placeholder="e.g. Alexander Wright"
+                  value={values.name}
+                  onChange={update("name")}
+                  className="w-full bg-[#FAF8F2] border border-slate-200 rounded-lg pl-10 pr-4 py-2.5 text-xs sm:text-sm text-[#172019] outline-none transition-all focus:border-[#F15A24] focus:bg-white focus:ring-2 focus:ring-[#F15A24]/10 placeholder:text-slate-400"
+                />
+              </div>
+            </div>
+
+            {/* Email & Mobile Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label className="font-eyebrow text-[10.5px] uppercase tracking-wider text-[#5A4139] font-bold block mb-1.5">
+                  Business Email *
+                </label>
+                <div className="relative">
+                  <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <input
+                    required
+                    type="email"
+                    placeholder="buyer@company.com"
+                    value={values.email}
+                    onChange={update("email")}
+                    className="w-full bg-[#FAF8F2] border border-slate-200 rounded-lg pl-10 pr-3.5 py-2.5 text-xs sm:text-sm text-[#172019] outline-none transition-all focus:border-[#F15A24] focus:bg-white focus:ring-2 focus:ring-[#F15A24]/10 placeholder:text-slate-400"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="font-eyebrow text-[10.5px] uppercase tracking-wider text-[#5A4139] font-bold block mb-1.5">
+                  WhatsApp / Phone
+                </label>
+                <div className="relative">
+                  <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <input
+                    type="tel"
+                    placeholder="+1 555 019 2831"
+                    value={values.mobile}
+                    onChange={update("mobile")}
+                    className="w-full bg-[#FAF8F2] border border-slate-200 rounded-lg pl-10 pr-3.5 py-2.5 text-xs sm:text-sm text-[#172019] outline-none transition-all focus:border-[#F15A24] focus:bg-white focus:ring-2 focus:ring-[#F15A24]/10 placeholder:text-slate-400"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Destination Country & City */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label className="font-eyebrow text-[10.5px] uppercase tracking-wider text-[#5A4139] font-bold block mb-1.5">
+                  Destination Country
+                </label>
+                <div className="relative">
+                  <Globe size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <input
+                    type="text"
+                    placeholder="e.g. Germany, UAE"
+                    value={values.country}
+                    onChange={update("country")}
+                    className="w-full bg-[#FAF8F2] border border-slate-200 rounded-lg pl-10 pr-3.5 py-2.5 text-xs sm:text-sm text-[#172019] outline-none transition-all focus:border-[#F15A24] focus:bg-white focus:ring-2 focus:ring-[#F15A24]/10 placeholder:text-slate-400"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="font-eyebrow text-[10.5px] uppercase tracking-wider text-[#5A4139] font-bold block mb-1.5">
+                  Port / City
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. Hamburg Port"
+                  value={values.city}
+                  onChange={update("city")}
+                  className="w-full bg-[#FAF8F2] border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-[#172019] outline-none transition-all focus:border-[#F15A24] focus:bg-white focus:ring-2 focus:ring-[#F15A24]/10 placeholder:text-slate-400"
+                />
+              </div>
+            </div>
+
+            {/* Product Selection */}
+            <div>
+              <label className="font-eyebrow text-[10.5px] uppercase tracking-wider text-[#5A4139] font-bold block mb-1.5">
+                Product Interest
+              </label>
+              <div className="relative">
+                <Package size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                <select
+                  value={values.product}
+                  onChange={update("product")}
+                  className="w-full bg-[#FAF8F2] border border-slate-200 rounded-lg pl-10 pr-4 py-2.5 text-xs sm:text-sm text-[#172019] outline-none transition-all focus:border-[#F15A24] focus:bg-white focus:ring-2 focus:ring-[#F15A24]/10 appearance-none cursor-pointer"
+                >
+                  {products.map((p) => (
+                    <option key={p} value={p}>
+                      {p}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Specifications / Quantity Message */}
+            <div>
+              <label className="font-eyebrow text-[10.5px] uppercase tracking-wider text-[#5A4139] font-bold block mb-1.5">
+                Estimated Volume &amp; Custom Specs
+              </label>
+              <textarea
+                rows={2}
+                placeholder="Mention mesh size, moisture max %, or container requirements (e.g. 1 FCL 20ft)..."
+                value={values.message}
+                onChange={update("message")}
+                className="w-full bg-[#FAF8F2] border border-slate-200 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-[#172019] outline-none transition-all focus:border-[#F15A24] focus:bg-white focus:ring-2 focus:ring-[#F15A24]/10 resize-none placeholder:text-slate-400"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="mt-2 w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-[#F15A24] text-white font-eyebrow text-xs uppercase tracking-[0.15em] font-bold rounded-lg hover:bg-[#0B2B1B] transition-all duration-300 shadow-md hover:shadow-xl disabled:opacity-60 cursor-pointer"
+            >
+              <span>{loading ? "Processing Quote..." : "Send Quote Request"}</span>
+              <ArrowRight size={16} />
+            </button>
+          </form>
         )}
 
-        {/* Floating Info Banner Integrated inside the card */}
-        <div className="mt-6 pt-5 border-t border-[#0B2B1B]/5 flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-eyebrow text-[10px] uppercase tracking-wider text-[#0B2B1B]/70 font-bold">
-          <span className="flex items-center gap-1.5">
-            <Ship size={14} className="text-[#2E7D32]" /> Global shipping
+        {/* Bottom Trust Indicators */}
+        <div className="mt-5 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-[10.5px] font-eyebrow text-[#5A4139] font-bold uppercase tracking-wider">
+          <span className="flex items-center gap-1.5 text-[#2E7D32]">
+            <Ship size={14} className="text-[#2E7D32]" /> FCL &amp; LCL Freight
           </span>
-          <span className="flex flex-col sm:flex-row items-center gap-1.5 text-center sm:text-left">
-            <Clock3 size={14} className="text-[#F15A24]" /> Reply within 24h
+          <span className="flex items-center gap-1.5 text-[#0B2B1B]">
+            <ShieldCheck size={14} className="text-[#F4A62A]" /> ISO &amp; FSSAI Validated
+          </span>
+          <span className="flex items-center gap-1.5 text-[#F15A24]">
+            <Clock3 size={14} className="text-[#F15A24]" /> 24h SLA Quote
           </span>
         </div>
+
       </div>
     </div>
   );
