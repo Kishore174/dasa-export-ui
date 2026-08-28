@@ -69,8 +69,8 @@ const RequestEstimateForm = () => {
         <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#F15A24]/20 rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative z-10 flex items-center justify-between mb-2">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 border border-white/15 rounded-full text-[10px] font-eyebrow uppercase tracking-[0.2em] text-[#F4A62A] font-bold">
-            <Sparkles size={12} className="text-[#F15A24]" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 border border-white/15 rounded-full text-[10px] font-eyebrow uppercase tracking-[0.2em] text-white font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#F4A62A] animate-pulse" />
             DIRECT EXPORT DESK
           </span>
           <span className="font-mono text-[10px] text-white/50 tracking-wider">

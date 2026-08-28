@@ -1,6 +1,6 @@
 import React from "react";
 import ContactSection from "../components/ui/ContactSection";
-import { MessageSquare } from "lucide-react";
+import RevealOnScroll from "../components/ui/RevealOnScroll";
 
 const ContactPage = () => {
   return (
@@ -8,7 +8,7 @@ const ContactPage = () => {
       {/* Page Header */}
       <section className="relative py-28 bg-[#0A1A0F] text-white overflow-hidden">
         {/* Bright Premium Photographic Background Image */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 pointer-events-none">
           <img
             src="/products/contact-premium-new.jpg"
             alt="Dasa Exports Headquarters"
@@ -24,19 +24,25 @@ const ContactPage = () => {
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
-          <span className="font-mono inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.08)] text-[10.5px] uppercase tracking-[2.5px] text-[var(--gold)] mb-4">
-            <MessageSquare size={13} />
-            Direct Export Desk
-          </span>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 mt-10">
+          <RevealOnScroll delay={0}>
+            <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 border border-white/20 text-white font-eyebrow text-[11px] font-bold tracking-[0.25em] uppercase mb-6 shadow-md backdrop-blur-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#F4A62A] animate-pulse" />
+              Direct Export Desk
+            </span>
+          </RevealOnScroll>
 
-          <h1 className="font-display text-4xl lg:text-5xl font-semibold">
-            Contact DASA Exports
-          </h1>
+          <RevealOnScroll delay={100}>
+            <h1 className="font-display text-4xl lg:text-5xl font-semibold mb-6">
+              Contact DASA Exports
+            </h1>
+          </RevealOnScroll>
 
-          <p className="mt-4 text-base lg:text-lg leading-8 text-[rgba(255,255,255,0.78)] max-w-2xl">
-            Request bulk FOB/CIF price quotes, sample test kits, custom mesh size specifications, or schedule a facility tour. Our international team responds within 4 business hours.
-          </p>
+          <RevealOnScroll delay={200}>
+            <p className="font-body-lg text-base lg:text-lg leading-8 text-[rgba(255,255,255,0.9)] max-w-2xl drop-shadow-md">
+              Request bulk FOB/CIF price quotes, sample test kits, custom mesh size specifications, or schedule a facility tour. Our international team responds within 4 business hours.
+            </p>
+          </RevealOnScroll>
         </div>
       </section>
 

@@ -111,7 +111,7 @@ export default function Hero() {
   const slide = heroSlides[currentSlide];
 
   return (
-    <header className="relative w-full h-[88vh] min-h-[660px] max-h-[920px] flex flex-col justify-between bg-[#0B2B1B] overflow-hidden group/hero pt-20 lg:pt-24">
+    <header className="relative w-full min-h-[100svh] flex flex-col justify-between bg-[#0B2B1B] overflow-hidden group/hero pt-24 lg:pt-32">
 
       {/* 4K Background Images Layer — Fixed Dimensions & GPU Accelerated Crossfade */}
       {heroSlides.map((s, idx) => {
@@ -174,7 +174,7 @@ export default function Hero() {
       `}} />
 
       {/* Main content row — Fixed Height Container & Left Aligned */}
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop flex-1 flex flex-col justify-center items-start pb-8 lg:pb-12">
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-[clamp(16px,5vw,64px)] flex-1 flex flex-col justify-center items-start pb-8 lg:pb-12">
         <div className="max-w-2xl text-left w-full">
 
           <div key={`content-${currentSlide}`} className="w-full min-h-[380px] flex flex-col justify-center">
@@ -193,20 +193,20 @@ export default function Hero() {
             </div>
 
             {/* Heading */}
-            <h1 className="slide-up-anim [animation-delay:250ms] font-display-lg text-4xl sm:text-5xl md:text-6xl text-white leading-[1.08] mb-5 font-serif font-bold drop-shadow-2xl">
+            <h1 className="slide-up-anim [animation-delay:250ms] font-display-lg text-[clamp(40px,10vw,64px)] text-white leading-[1.1] mb-2 font-serif font-bold drop-shadow-2xl">
               {slide.title} <br />
               <span className="text-[#F4A62A] italic font-light">{slide.highlight}</span>
             </h1>
 
-            <p className="slide-up-anim [animation-delay:400ms] font-body-lg text-base sm:text-lg text-white/90 font-normal leading-relaxed mb-7 drop-shadow-md max-w-xl min-h-[56px]">
+            <p className="slide-up-anim [animation-delay:400ms] font-body-lg text-base sm:text-lg text-white/90 font-normal leading-relaxed drop-shadow-md max-w-xl min-h-[56px] mt-[clamp(16px,4vw,32px)] mb-7">
               {slide.description}
             </p>
 
             {/* CTAs */}
-            <div className="slide-up-anim [animation-delay:550ms] flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            <div className="slide-up-anim [animation-delay:550ms] flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <button
                 onClick={() => setIsEstimateOpen(true)}
-                className="group flex items-center justify-center gap-2.5 px-8 py-4 bg-[#F15A24] text-white font-eyebrow text-xs tracking-[0.15em] font-bold uppercase rounded-lg hover:bg-white hover:text-[#0B2B1B] transition-all duration-300 shadow-xl hover:shadow-2xl cursor-pointer w-full sm:w-auto"
+                className="group flex items-center justify-center gap-2.5 px-8 bg-[#F15A24] text-white font-eyebrow text-xs tracking-[0.15em] font-bold uppercase rounded-lg hover:bg-white hover:text-[#0B2B1B] transition-all duration-300 shadow-xl hover:shadow-2xl cursor-pointer w-full sm:w-auto min-h-[56px]"
               >
                 <FileText size={16} />
                 <span>Request Export Estimate</span>
@@ -215,7 +215,7 @@ export default function Hero() {
 
               <Link
                 to="/products"
-                className="group flex items-center justify-center gap-2.5 px-8 py-4 bg-black/30 backdrop-blur-md border border-white/30 text-white font-eyebrow text-xs tracking-[0.15em] font-bold uppercase rounded-lg hover:bg-white hover:text-[#0B2B1B] transition-all duration-300 shadow-lg w-full sm:w-auto"
+                className="group flex items-center justify-center gap-2.5 px-8 bg-black/30 backdrop-blur-md border border-white/30 text-white font-eyebrow text-xs tracking-[0.15em] font-bold uppercase rounded-lg hover:bg-white hover:text-[#0B2B1B] transition-all duration-300 shadow-lg w-full sm:w-auto min-h-[56px]"
               >
                 <span>Explore Products</span>
                 <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -223,16 +223,16 @@ export default function Hero() {
 
               <Link
                 to="/catalog"
-                className="group flex items-center justify-center gap-2.5 px-8 py-4 bg-black/20 backdrop-blur-md border border-white/20 text-white font-eyebrow text-xs tracking-[0.15em] font-bold uppercase rounded-lg hover:bg-white hover:text-[#0B2B1B] transition-all duration-300 shadow-md w-full sm:w-auto"
+                className="group flex items-center justify-center gap-2.5 px-8 bg-black/20 backdrop-blur-md border border-white/20 text-white font-eyebrow text-xs tracking-[0.15em] font-bold uppercase rounded-lg hover:bg-white hover:text-[#0B2B1B] transition-all duration-300 shadow-md w-full sm:w-auto min-h-[56px]"
               >
                 <span>View Catalog</span>
               </Link>
             </div>
 
             {/* Metric highlights */}
-            <div className="slide-up-anim [animation-delay:650ms] mt-8 pt-6 border-t border-white/15 flex flex-wrap items-center gap-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#2E7D32]/20 border border-[#2E7D32]/40 flex items-center justify-center text-[#2E7D32]">
+            <div className="slide-up-anim [animation-delay:650ms] mt-[clamp(24px,5vw,32px)] pt-[clamp(20px,4vw,24px)] border-t border-white/15 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8 w-full">
+              <div className="flex items-center gap-3 w-full sm:w-auto">
+                <div className="w-10 h-10 rounded-full bg-[#2E7D32]/20 border border-[#2E7D32]/40 flex items-center justify-center text-[#2E7D32] shrink-0">
                   <ShieldCheck size={20} className="text-[#F4A62A]" />
                 </div>
                 <div>
@@ -245,8 +245,8 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 pl-6 border-l border-white/15">
-                <div className="w-10 h-10 rounded-full bg-[#F15A24]/20 border border-[#F15A24]/40 flex items-center justify-center text-[#F15A24]">
+              <div className="flex items-center gap-3 sm:pl-6 sm:border-l border-white/15 w-full sm:w-auto">
+                <div className="w-10 h-10 rounded-full bg-[#F15A24]/20 border border-[#F15A24]/40 flex items-center justify-center text-[#F15A24] shrink-0">
                   <Globe size={20} className="text-[#F15A24]" />
                 </div>
                 <div>
@@ -263,29 +263,29 @@ export default function Hero() {
           </div>
 
           {/* Slider controls */}
-          <div className="mt-8 flex items-center gap-6 slide-up-anim [animation-delay:750ms]">
+          <div className="mt-[clamp(24px,5vw,32px)] flex flex-wrap items-center gap-4 sm:gap-6 slide-up-anim [animation-delay:750ms] w-full">
             <div className="flex items-center gap-2">
               <button
                 onClick={handlePrevSlide}
-                className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-[#0B2B1B] transition-colors backdrop-blur-md shadow-md group cursor-pointer"
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-[#0B2B1B] transition-colors backdrop-blur-md shadow-md group cursor-pointer shrink-0"
                 aria-label="Previous slide"
               >
                 <ChevronLeft size={18} className="group-hover:-translate-x-0.5 transition-transform" />
               </button>
               <button
                 onClick={handleNextSlide}
-                className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-[#0B2B1B] transition-colors backdrop-blur-md shadow-md group cursor-pointer"
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-[#0B2B1B] transition-colors backdrop-blur-md shadow-md group cursor-pointer shrink-0"
                 aria-label="Next slide"
               >
                 <ChevronRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
               </button>
             </div>
 
-            <div className="font-mono text-xs tracking-widest text-white/60 border border-dashed border-white/25 rounded px-3 py-1.5">
+            <div className="font-mono text-xs tracking-widest text-white/60 border border-dashed border-white/25 rounded px-3 py-1.5 shrink-0">
               LOT <span className="text-white font-bold">{String(currentSlide + 1).padStart(2, '0')}</span> / {String(heroSlides.length).padStart(2, '0')}
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               {heroSlides.map((_, idx) => (
                 <button
                   key={idx}
@@ -300,31 +300,46 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Signature element: export seal, stamped over the image, right side */}
-      <div className="hidden lg:block absolute right-10 xl:right-16 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
-        <div key={`seal-${currentSlide}`} className="relative w-40 h-40 slide-up-anim [animation-delay:450ms]">
-          <svg viewBox="0 0 160 160" className="w-40 h-40 seal-ring">
+      {/* Signature element: Premium Export Seal, stamped over the image, right side */}
+      <div className="absolute right-4 top-24 sm:right-8 sm:top-28 lg:top-1/2 lg:-translate-y-1/2 lg:right-10 xl:right-16 z-20 pointer-events-none drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+        <div key={`seal-${currentSlide}`} className="relative w-[clamp(90px,23vw,140px)] h-[clamp(90px,23vw,140px)] slide-up-anim [animation-delay:450ms]">
+          
+          {/* Dark translucent background for guaranteed contrast (80% opacity) */}
+          <div className="absolute inset-0 bg-[#0B0B0B]/80 rounded-full border border-[#F4A62A]/40 backdrop-blur-sm" />
+          
+          {/* Rotating Text Ring */}
+          <svg viewBox="0 0 160 160" className="absolute inset-0 w-full h-full seal-ring drop-shadow-md">
             <defs>
-              <path id="sealCircle" d="M 80,80 m -68,0 a 68,68 0 1,1 136,0 a 68,68 0 1,1 -136,0" />
+              <path id="sealCircle" d="M 80,80 m -64,0 a 64,64 0 1,1 128,0 a 64,64 0 1,1 -128,0" />
             </defs>
-            <circle cx="80" cy="80" r="68" fill="none" stroke="rgba(244,166,42,0.35)" strokeWidth="1" />
-            <text fill="#F4A62A" fontSize="10.5" letterSpacing="3" className="font-eyebrow uppercase font-bold">
-              <textPath href="#sealCircle" startOffset="0%">
-                {`• ${slide.grade} • CERTIFIED EXPORT • VELLORE, INDIA `}
+            {/* Outer high-contrast border */}
+            <circle cx="80" cy="80" r="76" fill="none" stroke="#F4A62A" strokeWidth="1.5" strokeOpacity="0.9" />
+            {/* Inner subtle border for premium stamp look */}
+            <circle cx="80" cy="80" r="50" fill="none" stroke="#F4A62A" strokeWidth="1" strokeOpacity="0.4" strokeDasharray="3 3" />
+            
+            <text fill="#F4A62A" fontSize="9.5" letterSpacing="2" className="font-eyebrow uppercase font-bold" style={{ textShadow: "0px 1px 2px rgba(0,0,0,0.8)" }}>
+              <textPath href="#sealCircle" startOffset="2%">
+                {`EXPORT • ${slide.grade} • CERTIFIED • VELLORE • `}
               </textPath>
             </text>
           </svg>
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center gap-0.5">
-            <ShieldCheck size={18} className="text-[#F4A62A] mb-1" />
-            <span className="font-mono text-[9px] tracking-[0.15em] text-white/70 uppercase">Lot No.</span>
-            <span className="font-mono text-xs font-bold text-white tracking-wide">{slide.lot}</span>
+          
+          {/* Static Center Content */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 scale-90 sm:scale-100">
+            <ShieldCheck size={18} className="text-[#F4A62A] mb-1 sm:w-5 sm:h-5 lg:w-6 lg:h-6 drop-shadow-md" strokeWidth={1.5} />
+            <span className="font-mono text-[8px] sm:text-[9px] lg:text-[10px] tracking-[0.2em] text-[#F9F7F1] uppercase mb-0.5 opacity-90 drop-shadow-sm">
+              Lot No.
+            </span>
+            <span className="font-mono text-[10px] sm:text-xs lg:text-sm font-bold text-white tracking-widest drop-shadow-md">
+              {slide.lot}
+            </span>
           </div>
         </div>
       </div>
 
       {/* Destinations ticker */}
       <div className="relative z-10 w-full border-t border-white/10 bg-black/30 backdrop-blur-sm overflow-hidden shrink-0">
-        <div className="flex items-center gap-3 py-3 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+        <div className="flex items-center gap-3 py-3 px-[clamp(16px,5vw,64px)] max-w-[1440px] mx-auto">
           <span className="font-eyebrow text-[10px] tracking-[0.2em] text-[#F4A62A] font-bold uppercase shrink-0 hidden sm:inline">
             Shipping to
           </span>

@@ -133,7 +133,7 @@ const PaymentTerms = () => {
               POLICIES
             </span>
             <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-serif text-white mb-5 leading-tight drop-shadow-2xl">
-              International Payment &amp; Shipping Terms
+              International Payment &amp; {/* Shipping */} Terms
             </h1>
             <p className="font-body-lg text-body-lg text-white/95 leading-relaxed drop-shadow-lg font-medium">
               We prioritize transparent, secure, and efficient financial transactions to foster long-term partnerships with our global clientele. Review our standard terms designed for international trade.
@@ -143,7 +143,7 @@ const PaymentTerms = () => {
       </section>
 
       {/* Container wrapper */}
-      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-12 md:py-16">
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-16">
 
         {/* Accepted Payment Methods Section */}
         <section className="mb-24">

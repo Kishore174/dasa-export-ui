@@ -49,15 +49,16 @@ export default function ProductsPage() {
       <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop space-y-12 py-12">
 
         {/* Category Pills & Search */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-outline/10">
-          <div className="flex flex-wrap gap-2">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-outline/10">
+          
+          <div className="flex flex-nowrap md:flex-wrap gap-2 overflow-x-auto w-full pb-2 md:pb-0 scrollbar-hide shrink-0 lg:max-w-[70%]">
             {categoryList.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 text-xs font-eyebrow rounded transition-colors ${
+                className={`px-4 py-2 text-xs font-eyebrow rounded transition-colors whitespace-nowrap shrink-0 ${
                   selectedCategory === cat
-                    ? 'bg-[#F15A24] text-white'
+                    ? 'bg-primary text-white shadow-md'
                     : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'
                 }`}
               >
@@ -71,16 +72,38 @@ export default function ProductsPage() {
             placeholder="Search products..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-4 py-2 bg-transparent border-b border-outline/30 text-on-background placeholder-on-surface-variant/50 focus:outline-none focus:border-primary font-body-md"
+            className="px-4 py-2 bg-transparent border-b border-outline/30 text-on-background placeholder-on-surface-variant/50 focus:outline-none focus:border-primary font-body-md w-full lg:w-64 shrink-0 transition-colors"
           />
         </div>
 
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-gutter">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        {/* Product Count */}
+        <div className="mb-6 text-center md:text-left">
+          <p className="font-body-md text-on-surface-variant">
+            {selectedCategory === 'Fruit Powder' ? (
+              <span className="font-bold text-primary">Showing {filteredProducts.length} products in Fruit Powder</span>
+            ) : (
+              <span>Showing {filteredProducts.length} products</span>
+            )}
+          </p>
         </div>
+
+        {/* Product Grid & Empty State */}
+        {filteredProducts.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-gutter">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <div className="w-full py-24 flex flex-col items-center justify-center text-center bg-surface-container/20 rounded-xl border border-outline/10">
+            <h3 className="font-display-sm text-2xl font-serif font-bold text-[#1B1C19] mb-3">
+              No products found in this category.
+            </h3>
+            <p className="font-body-md text-on-surface-variant max-w-md">
+              We couldn't find any products matching your selected category and search criteria. Try adjusting your filters.
+            </p>
+          </div>
+        )}
 
       </div>
     </div>
